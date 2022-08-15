@@ -10,6 +10,7 @@ $("#newUser").on("click", function (e) {
     $("#userModal").modal("show")
 })
 
+
 $("#saveData").on("click",SaveData);
 $("#editData").on("click",Update);
 
@@ -279,6 +280,10 @@ function Clear(username, password, img) {
     password="";
     img.files=null;
 }
+//DATATABLE
+$(document).ready(function () {
+    $('#usersTable ').DataTable();
+});
 
 $("#usersTable tbody").on("click", "i.edit_user", function () {
     let id = $(this).attr("edit_user_id");
