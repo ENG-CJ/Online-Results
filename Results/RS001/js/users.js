@@ -10,6 +10,7 @@ $("#newUser").on("click", function (e) {
     $("#userModal").modal("show")
 })
 
+
 $("#saveData").on("click",SaveData);
 $("#editData").on("click",Update);
 
@@ -233,6 +234,7 @@ function DisplayMessage(type = "error", message) {
         error.innerHTML = message;
     }
 }
+
 
 
 $("#usersTable tbody").on("click", "i.edit_user", function () {
