@@ -12,7 +12,6 @@ if(isset($action)){
 
 class Request{
 
-
     public static function read(){
 
        
@@ -36,8 +35,6 @@ class Request{
 
 
     }
-
-
     public static function countUser(){
 
        
@@ -61,31 +58,6 @@ class Request{
 
 
     }
-
-    public static function GET_STATEMENT(){
-
-       extract($_POST);
-        $query="CALL render_user_statement('$user_id','$fromDate','$toDate')";
-        $resultSet= connection::GetMySqlConnection()->query($query);
-        $data=array();
-        $responseData= array();
-
-        if ($resultSet)
-           {
-            while ($rows=$resultSet->fetch_assoc())
-            {
-                $data []=$rows;
-            }
-            $responseData=array("status"=>true,"data"=>$data);
-           }
-        else
-            $responseData=array("status"=>false,"data"=> connection::GetMySqlConnection()->error);
-        
-        echo json_encode($responseData);
-
-
-    }
-
     public static function insert(){
 
         extract($_POST);
@@ -132,30 +104,6 @@ class Request{
             $responseData=array("status"=>false,"data"=> connection::GetMySqlConnection()->error);
         
         echo json_encode($responseData);
-    }
-    // Get user balance
-    public static function GET_BALANCE(){
-
-        extract($_POST);
-        $query="SELECT get_UserBalance('$id') AS `Balance`;";
-        $resultSet= connection::GetMySqlConnection()->query($query);
-        $responseData= array();
-        $data=array();
-
-        if ($resultSet)
-           {
-            while ($rows=$resultSet->fetch_assoc())
-            {
-                $data []=$rows;
-            }
-            $responseData=array("status"=>true,"data"=>$data);
-           }
-        else
-            $responseData=array("status"=>false,"data"=> connection::GetMySqlConnection()->error);
-        
-        echo json_encode($responseData);
-
-
     }
 
     public static function searchUser(){

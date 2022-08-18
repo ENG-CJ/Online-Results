@@ -14,21 +14,9 @@ $("#newUser").on("click", function (e) {
 $("#saveData").on("click",SaveData);
 $("#editData").on("click",Update);
 
-// functions
-function DisplayPhoto(e){
-    ReadImage(browseFile);
-} 
 
 
-function ReadImage(input){
-    if (input && input.files[0]){
-        var reader = new FileReader();
-        reader.onload=function(e){
-            displayImage.src=e.target.result;
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+// update function
 function Update(e) {
     e.preventDefault();
    
@@ -151,6 +139,7 @@ function DeleteUser(id) {
     });
 }
 
+// loads data from database
 function loadData() {
     $("#usersTable tbody").html("");
     let data = {
@@ -193,9 +182,7 @@ function loadData() {
 }
 
 
-
 // count Users from database
-
 function countUsers() {
    
     let data = {
@@ -217,26 +204,6 @@ function countUsers() {
         }
     });
 
-}
-// make request function
-function PostRequest(data) {
-    $.ajax({
-        method: 'POST',
-        dataType: "JSON",
-        data: data,
-        url: "../api/api.php",
-        success: function (response) {
-
-            let responseDATA = response.data;
-            DisplayMessage("success", responseDATA)
-            loadData();
-
-        },
-        error: function (response) {
-            let responseMessage = response.data;
-            DisplayMessage("error", response)
-        }
-    });
 }
 
 // display message 
@@ -267,23 +234,8 @@ function DisplayMessage(type = "error", message) {
         error.innerHTML = message;
     }
 }
-/// validations
-function Validate(amount, user_id, description) {
-    if (amount == "" || user_id == "" || description == "")
-        return true;
-    else
-        return false;
-}
 
-function Clear(username, password, img) {
-    username="";
-    password="";
-    img.files=null;
-}
-//DATATABLE
-$(document).ready(function () {
-    $('#usersTable ').DataTable();
-});
+
 
 $("#usersTable tbody").on("click", "i.edit_user", function () {
     let id = $(this).attr("edit_user_id");
@@ -316,6 +268,7 @@ $("#usersTable tbody").on("click", "i.edit_user", function () {
     })
 
 })
+
 $("#usersTable tbody").on("click", "i.delete", function () {
     Swal.fire({
         title: 'Are you sure?',
