@@ -26,5 +26,16 @@ The database file is  <kbd>justresults.sql</kbd> File In The Folder of <kbd>DB F
 and thats is you will get all queries about the database of this project
 
 
+#  Export Database File (MYSQL WORK-BENCH)
+When You Done The Part Of The Project Plz Export The Datbase Query, 
+By Using This Steps<br>
+<ul>
+<li>In MySQL Work-Bench Click the database name</li>
+<li>Then Click Export Button On The Top</li>
+<li>Then Choose File Type Pre-defined Files <kbd>SQL,CSV,PDF</kbd> Select SQL File Type</li>
+<li>Then Click Export</li>
+</ul><br>
+And That's It.  Locate The FILE In The Downloads Folder 
+
 # AnyHelp
 Email : abdulrahmandev10@gmail.com
