@@ -2,7 +2,7 @@
 this project is based on online results management system for student<br>
 V.0.01, Continues Contribution. <br>
 The Part Of This Project.
-![](./Results/thumb.JPG)
+![](/Results/thumb.jpg)
 
 # Contribution
 This is OpenSource Project you can contribute by forking and cloning this repo :: required tools is ( PHP , MYSQL, JQUERY-AJAX AND JS) <br>
