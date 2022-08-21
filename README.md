@@ -40,7 +40,19 @@ By Using This Steps<br>
 And That's It.  Locate The FILE In The Downloads Folder 
 
 # Active Contributers
-<img src="Results/contr/ENG-CJ.png" width="30%" style="border-radius: 50% border: 1px solid gray">
-<img src="Results/contr/ENG-CJ.png" width="30%" style="border-radius: 50% border: 1px solid gray; display : inline">
+
+<svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+
+      <style>
+        /* your CSS */
+      </style>
+    <img src="Results/contr/ENG-CJ.png" width="30%" style="border-radius: 50% border: 1px solid gray">
+      <!-- your HTML -->
+
+    </div>
+  </foreignObject>
+</svg>
 # AnyHelp
 Email : abdulrahmandev10@gmail.com
