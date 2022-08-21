@@ -41,7 +41,7 @@ And That's It.  Locate The FILE In The Downloads Folder
 
 # Active Contributers
 <a href = "https://github.com/Tanu-N-Prabhu/Python/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo = GitHub_username/repository_name"/>
+  <img src = "https://contrib.rocks/image?repo = ENG-CJ/Online-Results"/>
 </a>
     
 
