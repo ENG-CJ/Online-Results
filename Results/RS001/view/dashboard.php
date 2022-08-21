@@ -14,16 +14,16 @@
                             <div class="row">
                                 <!--[ daily sales section ] start-->
                                 <div class="col-md-6 col-xl-4">
-                                    <div class="card daily-sales">
-                                        <div class="card-block">
-                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700;">Users</h6>
+                                    <div class="card daily-sales styledCard" style="background-color: #FF7F3F;" >
+                                        <div class="card-block" >
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color:#f4f4f4;">Users</h6>
                                             <div class="row d-flex align-items-center">
                                                 <div class="col-9">
-                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fas fa-user f-30 m-r-10"></i><span id='count'>10</span></h3>
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fas fa-user f-30 m-r-10"></i><span style="font-family: poppins; font-weight: 650; color: #f4f4f4;" id='count'>10</span></h3>
                                                 </div>
 
                                                 <div class="col-3 text-right">
-                                                    <p class="m-b-0">All Users</p>
+                                                    <p class="m-b-0" style="font-size: 13px;font-family: poppins; font-weight: 650; color: #f4f4f4;">All Users</p>
                                                 </div>
                                             </div>
                                             <!-- <div class="progress m-t-30" style="height: 7px;">
@@ -35,16 +35,16 @@
                                 <!--[ daily sales section ] end-->
                                 <!--[ Monthly  sales section ] starts-->
                                 <div class="col-md-6 col-xl-4">
-                                    <div class="card Monthly-sales">
+                                    <div class="card Monthly-sales styledCard" style="background-color: #6c3fff;">
                                     <div class="card-block">
-                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700;">SIMISTER</h6>
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color: #f4f4f4;">SEMESTER</h6>
                                             <div class="row d-flex align-items-center">
                                                 <div class="col-9">
-                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fas fa-user f-30 m-r-10"></i><span id='count_simister'>10</span></h3>
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fa-solid fa-school-circle-exclamation mr-2"></i></i><span style="color: white ; font-family: verdana" id='count_simister'>10</span></h3>
                                                 </div>
 
                                                 <div class="col-3 text-right">
-                                                    <p class="m-b-0">All SIMISTERS</p>
+                                                    <p class="m-b-0" style="font-size: 12px;font-family: poppins; font-weight: 650; color: #f4f4f4;">SEMESTER</p>
                                                 </div>
                                             </div>
                                             <!-- <div class="progress m-t-30" style="height: 7px;">
@@ -56,16 +56,37 @@
                                 <!--[ Monthly  sales section ] end-->
                                 <!--[ year  sales section ] starts-->
                                 <div class="col-md-12 col-xl-4">
-                                    <div class="card yearly-sales">
+                                    <div class="card yearly-sales styledCard" style="background-color: #333C83;">
                                     <div class="card-block">
-                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700;">CLASS</h6>
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color:#f4f4f4">CLASS</h6>
                                             <div class="row d-flex align-items-center">
                                                 <div class="col-9">
-                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fas fa-user f-30 m-r-10"></i><span id='count_class'>10</span></h3>
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fa-solid fa-shapes mr-2" ></i><span style="color: #f4f4f4; font-weight:650;" id='count_class'>10</span></h3>
                                                 </div>
 
                                                 <div class="col-3 text-right">
-                                                    <p class="m-b-0">All CLASS</p>
+                                                    <p class="m-b-0" style="font-size: 12px;font-family: poppins; font-weight: 650; color: #f4f4f4;">CLASSES</p>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales styledCard" style="background-color: #9772FB;">
+                                    <div class="card-block">
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color:#f4f4f4">Students</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fa-solid fa-graduation-cap mr-2"></i><span style="color: #f4f4f4; font-weight:650;" id='countStudent'>10</span></h3>
+                                                </div>
+
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0" style="font-size: 12px;font-family: poppins; font-weight: 650; color: #f4f4f4;">Students</p>
                                                 </div>
                                             </div>
                                             <!-- <div class="progress m-t-30" style="height: 7px;">
@@ -75,124 +96,11 @@
                                     </div>
                                 </div>
                                 <!--[ year  sales section ] end-->
-                                <!--[ Recent Users ] start-->
-                                <div class="col-xl-8 col-md-6">
-                                    <div class="card Recent-Users">
-                                        <div class="card-header">
-                                            <h5>Recent Users</h5>
-                                        </div>
-                                        <div class="card-block px-0 py-3">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <tbody>
-                                                        <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></td>
-                                                            <td>
-                                                                <h6 class="mb-1">Isabella Christensen</h6>
-                                                                <p class="m-0">Lorem Ipsum is simply…</p>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="text-muted"><i class="fas fa-circle text-c-green f-10 m-r-15"></i>11 MAY 12:56</h6>
-                                                            </td>
-                                                            <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
-                                                        </tr>
-                                                        <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></td>
-                                                            <td>
-                                                                <h6 class="mb-1">Mathilde Andersen</h6>
-                                                                <p class="m-0">Lorem Ipsum is simply text of…</p>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="text-muted"><i class="fas fa-circle text-c-red f-10 m-r-15"></i>11 MAY 10:35</h6>
-                                                            </td>
-                                                            <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
-                                                        </tr>
-                                                        <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-3.jpg" alt="activity-user"></td>
-                                                            <td>
-                                                                <h6 class="mb-1">Karla Sorensen</h6>
-                                                                <p class="m-0">Lorem Ipsum is simply…</p>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="text-muted"><i class="fas fa-circle text-c-green f-10 m-r-15"></i>9 MAY 17:38</h6>
-                                                            </td>
-                                                            <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
-                                                        </tr>
-                                                        <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-1.jpg" alt="activity-user"></td>
-                                                            <td>
-                                                                <h6 class="mb-1">Ida Jorgensen</h6>
-                                                                <p class="m-0">Lorem Ipsum is simply text of…</p>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="text-muted f-w-300"><i class="fas fa-circle text-c-red f-10 m-r-15"></i>19 MAY 12:56</h6>
-                                                            </td>
-                                                            <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
-                                                        </tr>
-                                                        <tr class="unread">
-                                                            <td><img class="rounded-circle" style="width:40px;" src="assets/images/user/avatar-2.jpg" alt="activity-user"></td>
-                                                            <td>
-                                                                <h6 class="mb-1">Albert Andersen</h6>
-                                                                <p class="m-0">Lorem Ipsum is simply dummy…</p>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="text-muted"><i class="fas fa-circle text-c-green f-10 m-r-15"></i>21 July 12:56</h6>
-                                                            </td>
-                                                            <td><a href="#!" class="label theme-bg2 text-white f-12">Reject</a><a href="#!" class="label theme-bg text-white f-12">Approve</a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--[ Recent Users ] end-->
+                               
 
-                                <!-- [ statistics year chart ] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card card-event">
-                                        <div class="card-block">
-                                            <div class="row align-items-center justify-content-center">
-                                                <div class="col">
-                                                    <h5 class="m-0">Upcoming Event</h5>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <label class="label theme-bg2 text-white f-14 f-w-400 float-right">34%</label>
-                                                </div>
-                                            </div>
-                                            <h2 class="mt-3 f-w-300">45<sub class="text-muted f-14">Competitors</sub></h2>
-                                            <h6 class="text-muted mt-4 mb-0">You can participate in event </h6>
-                                            <i class="fab fa-angellist text-c-purple f-50"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-block border-bottom">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-auto">
-                                                    <i class="feather icon-zap f-30 text-c-green"></i>
-                                                </div>
-                                                <div class="col">
-                                                    <h3 class="f-w-300">235</h3>
-                                                    <span class="d-block text-uppercase">TOTAL IDEAS</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-block">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-auto">
-                                                    <i class="feather icon-map-pin f-30 text-c-blue"></i>
-                                                </div>
-                                                <div class="col">
-                                                    <h3 class="f-w-300">26</h3>
-                                                    <span class="d-block text-uppercase">TOTAL LOCATIONS</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ statistics year chart ] end -->
+                              
                                 <!--[social-media section] start-->
-                                <div class="col-md-12 col-xl-4">
+                                <!-- <div class="col-md-12 col-xl-4">
                                     <div class="card card-social">
                                         <div class="card-block border-bottom">
                                             <div class="row align-items-center justify-content-center">
@@ -222,8 +130,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-xl-4">
+                                </div> -->
+                                <!-- <div class="col-md-6 col-xl-4">
                                     <div class="card card-social">
                                         <div class="card-block border-bottom">
                                             <div class="row align-items-center justify-content-center">
@@ -284,10 +192,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!--[social-media section] end-->
                                 <!-- [ rating list ] starts-->
-                                <div class="col-xl-4 col-md-6">
+                                <!-- <div class="col-xl-4 col-md-6">
                                     <div class="card user-list">
                                         <div class="card-header">
                                             <h5>Rating</h5>
@@ -340,9 +248,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- [ rating list ] end-->
-                                <div class="col-xl-8 col-md-12 m-b-30">
+                                <!-- <div class="col-xl-8 col-md-12 m-b-30">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Today</a>
@@ -585,7 +493,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                             <!-- [ Main Content ] end -->
@@ -599,6 +507,7 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
    
 <script src="../js/users.js"></script>
+<script src="../js/students.js"></script>
 <script src="../js/count.js"></script>
 
 <?php  require 'footer.php' ?>

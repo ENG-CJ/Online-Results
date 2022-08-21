@@ -25,8 +25,8 @@ include 'sidebar.php';
                                         <div class="card-block table-border-style">
                                             <div class="table-responsive">
                                            
-      <h1>Simester table</h1>
-      <img src="../../assets/images/simister.png" style="width: 300px; height: 300px mt-6;" alt="" srcset="">
+      <h2 style="color: #2b2b2b; font-family: poppins">Semester Info</h2>
+      <img src="../../assets/images/animate.gif" style="width: 300px; height: 300px mt-6;" alt="" srcset="">
                                         <!-- <form action="" method="POST">
                                      
                                                         <div class="form-group">

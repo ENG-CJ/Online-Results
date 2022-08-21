@@ -28,15 +28,24 @@
                         </ul>
                     </li>
                     <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fas fa-user"></i></span><span class="pcoded-mtext">Schol collection</span></a>
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fa-solid fa-school"></i></span><span class="pcoded-mtext">Manage Collections</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="classes.php" class="">classes</a></li>
-                            <li class=""><a href="Simester.php" class="">Simester</a></li>
+                            <li class=""><a href="classes.php" class="">Classes</a></li>
+                            <li class=""><a href="Simester.php" class="">Semester</a></li>
+                            <li class=""><a href="subjects.php" class="">Subjects</a></li>
                            
                         </ul>
                     </li>
                     
-                    
+                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fa-solid fa-graduation-cap"></i></span><span class="pcoded-mtext">Students</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="Students.php" class="">Manage Students</a></li>
+                            <li class=""><a href="view_students.php" class="">View Students</a></li>
+                           
+                           
+                        </ul>
+                    </li>
                    
                    
                    

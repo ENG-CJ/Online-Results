@@ -10,7 +10,29 @@ if(isset($action)){
 
 class Request{
 
+    public static function readClassNames(){
 
+       
+        $query="CALL readClassNames()";
+        $resultSet= connection::GetMySqlConnection()->query($query);
+        $data=array();
+        $responseData= array();
+
+        if ($resultSet)
+           {
+            while ($rows=$resultSet->fetch_assoc())
+            {
+                $data []=$rows;
+            }
+            $responseData=array("status"=>true,"data"=>$data);
+           }
+        else
+            $responseData=array("status"=>false,"data"=> connection::GetMySqlConnection()->error);
+        
+        echo json_encode($responseData);
+
+
+    }
 public static function classregester(){
 
     extract($_POST);
@@ -19,7 +41,11 @@ public static function classregester(){
     $responseData= array();
 
     if ($resultSet)
-        $responseData=array("status"=>true,"data"=>"Successfully Saved....");
+        {
+            $responseData=array("status"=>true,"data"=>"Successfully Saved....");
+           
+            
+        }
     else
         $responseData=array("status"=>false,"data"=> connection::GetMySqlConnection()->error);
     

@@ -36,7 +36,9 @@ $(document).ready(function () {
             success : function(response){
                 let responseData = response.data;
                 DisplayMessage("success",responseData);
+               Loads.ReloadCurrentPage();
                 loadData();
+               
                // Clear(userName,passcode,browseFile);
             },
             error : function(response){
@@ -44,6 +46,7 @@ $(document).ready(function () {
                 let responseUsers=response.data;
                 let statusReponse=response.status;
                 let responseFromServer=response['responseText'];
+                console.log(response)
                 if (statusReponse)
                     DisplayMessage("error",responseUsers);
                 else
@@ -161,6 +164,7 @@ $("#submit_updates").on("click",function(event){
             success : function(response){
                 let responseData = response.data;
                 DisplayMessage("success",responseData);
+                Loads.ReloadCurrentPage();
                 
                // Clear(userName,passcode,browseFile);
             },
@@ -170,7 +174,11 @@ $("#submit_updates").on("click",function(event){
                 let statusReponse=response.status;
                 let responseFromServer=response['responseText'];
                 if (statusReponse)
+                {
                     DisplayMessage("error",responseclass);
+                    Loads.ReloadCurrentPage();
+                    loadData();
+                }
                 else
                 DisplayMessage("error",responseFromServer);
             }
@@ -265,18 +273,10 @@ function feach_class_Delate(id){
             let response =data.data;
             let html ='';
             let tr ='';
-            if(status){
-    
+            if(status){    
             swal("Good job!", response, "success");
+            Loads.ReloadCurrentPage();
          
-        
-            
-                
-                
-            
-            
-    
-    
             }else{
             swal(response);
             
@@ -305,9 +305,7 @@ $('#classidtable').on("click","a.delete_info",function(){
       })
       .then((willDelete) => {
         if (willDelete) {
-          swal("Dagnin! ma u bahantahay inaad tirtirto", {
-            icon: "success",
-          });
+         
           feach_class_Delate(id)
         } else {
           swal("wekuu badbaday datadada");
@@ -323,11 +321,12 @@ $('#classidtable').on("click","a.delete_info",function(){
 
 
 
-
-
-// classidtable
-
-
-
-
-
+// class Loads
+class Loads{
+    /**
+     * Loads Current page to make Refresh
+     */
+    static ReloadCurrentPage(){
+        window.location.reload();
+    }
+}
