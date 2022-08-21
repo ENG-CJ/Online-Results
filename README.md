@@ -40,6 +40,6 @@ By Using This Steps<br>
 And That's It.  Locate The FILE In The Downloads Folder 
 
 # Active Contributers
-<img src="Results/contr/ENG-CJ.png" width="50%" style="border-radius: 50% border: 1px solid gray">
+<img src="Results/contr/ENG-CJ.png" width="30%" style="border-radius: 50% border: 1px solid gray">
 # AnyHelp
 Email : abdulrahmandev10@gmail.com
