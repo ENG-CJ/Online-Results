@@ -40,11 +40,9 @@ By Using This Steps<br>
 And That's It.  Locate The FILE In The Downloads Folder 
 
 # Active Contributers
-<a href = "https://github.com/ENG-CJ/Online-Results/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo = ENG-CJ/Online-Results"/>
+<a href="https://github.com/ENG-CJ/Online-Results/graphs/contributors">
+  <img src="https://opencollective.com/Online-Results/contributors.svg?width=890&button=false">
 </a>
-
-Made with [contributors-img](https://contrib.rocks).
   
 # AnyHelp
 Email : abdulrahmandev10@gmail.com
