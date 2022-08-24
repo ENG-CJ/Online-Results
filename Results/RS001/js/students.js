@@ -250,23 +250,23 @@ function IsNotSelected(className, semester) {
     else
         return false;
 }
-function SetTost(message, background_Color) {
-    Toastify({
-        text: message, duration: 3000,
-        // destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "right", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: background_Color,
-            fontFamily: "poppins",
-            borderRadius: "4px"
-        },
-        onClick: function () { } // Callback after click
-    }).showToast();
-}
+// function SetTost(message, background_Color) {
+//     Toastify({
+//         text: message, duration: 3000,
+//         // destination: "https://github.com/apvarun/toastify-js",
+//         newWindow: true,
+//         close: true,
+//         gravity: "right", // `top` or `bottom`
+//         position: "right", // `left`, `center` or `right`
+//         stopOnFocus: true, // Prevents dismissing of toast on hover
+//         style: {
+//             background: background_Color,
+//             fontFamily: "poppins",
+//             borderRadius: "4px"
+//         },
+//         onClick: function () { } // Callback after click
+//     }).showToast();
+// }
 
 function IsValidID(id) {
     if (id.val().toUpperCase().startsWith("S", 0) && id.val().toUpperCase().startsWith("T", 1))

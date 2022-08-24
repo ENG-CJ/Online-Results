@@ -24,6 +24,7 @@
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fas fa-user"></i></span><span class="pcoded-mtext">Users</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="users.php" class="">Manage Users</a></li>
+                            <li class=""><a href="combinanational.php" class="">create combanitional</a></li>
                            
                         </ul>
                     </li>

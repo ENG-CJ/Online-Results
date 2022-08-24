@@ -16,8 +16,6 @@ class Request{
 
 
 
-
-
     public static function insert_simister(){
 
         extract($_POST);

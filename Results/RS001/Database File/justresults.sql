@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2022 at 03:21 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Aug 23, 2022 at 10:48 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,90 +25,121 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent` (IN `$roll` VARCHAR(50), IN `$name` VARCHAR(100), IN `$gender` VARCHAR(60), IN `$mobile` INT, IN `$address` VARCHAR(50), IN `$class` VARCHAR(50), IN `$semester` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent` (IN `$roll` VARCHAR(50), IN `$name` VARCHAR(100), IN `$gender` VARCHAR(60), IN `$mobile` INT, IN `$address` VARCHAR(50), IN `$class` VARCHAR(50), IN `$semester` VARCHAR(50))  BEGIN
  
 INSERT INTO students(`RollNumber`,`FullName`,`Gender`,`Mobile`,`Address`,`Class`,`Semester`)
 VALUES($roll,$name,$gender,$mobile,$address,$class,$semester);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addSubject` (IN `$name` VARCHAR(100), IN `$semesterName` VARCHAR(100))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addSubject` (IN `$name` VARCHAR(100), IN `$semesterName` VARCHAR(100))  BEGIN
  INSERT INTO subjects(`Name`,`Belongs_Semester`) VALUES($name,$semesterName);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_class` (IN `Class_id` VARCHAR(55), IN `className` VARCHAR(55))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_class` (IN `Class_id` VARCHAR(55), IN `className` VARCHAR(55))  BEGIN
 INSERT INTO `classes`(`classID`, `Name`)
 VALUES ($Class_id,$className);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_simester` (IN `ID` VARCHAR(55), IN `Name` VARCHAR(55))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_combanetion` (IN `username` VARCHAR(55), IN `bassword` VARCHAR(55), IN `role` VARCHAR(55), IN `status` VARCHAR(55), IN `student` VARCHAR(55))  BEGIN
+IF (role ='student')THEN
+INSERT INTO `combanition`( `username`, `bassword`, `role`, `status`)
+VALUES (student,bassword,role,status);
+
+SELECT 'Deny'as Message;
+ELSE
+INSERT INTO `combanition`( `username`, `bassword`, `role`, `status`)
+VALUES (username,bassword,role,status);
+
+SELECT 'Regestered'as Message;
+END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_simester` (IN `ID` VARCHAR(55), IN `Name` VARCHAR(55))  BEGIN
 INSERT INTO `simester`(`ID`, `Name`)  
 VALUES (ID,Name);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_user` (IN `$user_id` VARCHAR(50), IN `$username` VARCHAR(100), IN `$pass` VARCHAR(100), IN `$role` VARCHAR(50), IN `$status` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_user` (IN `$user_id` VARCHAR(50), IN `$username` VARCHAR(100), IN `$pass` VARCHAR(100), IN `$role` VARCHAR(50), IN `$status` VARCHAR(50))  BEGIN
 INSERT INTO `users`(`ID`, `Username`, `Password`, `User_Type`, `Status`) 
 VALUES ($user_id,$username,$pass,$role,$status);
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `countStudents` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `countStudents` ()  BEGIN
 
 SELECT COUNT(*) as 'Rows' FROM students;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `countUsers` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `countUsers` ()  BEGIN
 
 SELECT COUNT(*) as 'Rows' FROM users ;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteStudent` (IN `$id` VARCHAR(100))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteStudent` (IN `$id` VARCHAR(100))  BEGIN
  DELETE FROM students WHERE students.RollNumber=$id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteSubject` (IN `$id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteSubject` (IN `$id` INT)  BEGIN
  DELETE FROM subjects 
  WHERE subjects.SubjectID=$id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_sp` (IN `$id` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_sp` (IN `$id` VARCHAR(50))  BEGIN
  DELETE FROM users WHERE users.ID=$id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ExistStudent` (IN `$roll` VARCHAR(50), IN `$mobile` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ExistStudent` (IN `$roll` VARCHAR(50), IN `$mobile` INT)  BEGIN
 SELECT *FROM students
 WHERE students.RollNumber=$roll or students.Mobile=$mobile;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readClassNames` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readClassNames` ()  BEGIN
 SELECT classes.Name FROM classes;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readSemesterName` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readSemesterName` ()  BEGIN
  SELECT simester.Name as Semester
  from simester;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readStudents` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readStudents` ()  BEGIN
 
 SELECT *FROM students;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readSubjects` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readStudent_for_companetion` ()  BEGIN
+ SELECT students.FullName as students
+ from students;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readSubjects` ()  BEGIN
  SELECT *FROM subjects;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `readUsers` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readUsers` ()  BEGIN
  SELECT users.ID, users.Username,users.User_Type as Role, users.Status,users.JoinedDate FROM users;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `searchSemesterName` (IN `$name` VARCHAR(100))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readUsers_for_companetion` ()  BEGIN
+ SELECT users.Username as users
+ from users;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `read_companetion` ()  BEGIN
+
+
+SELECT * FROM combanition;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `searchSemesterName` (IN `$name` VARCHAR(100))  BEGIN
  SELECT simester.Name FROM simester
  WHERE simester.Name=$name;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudent` (IN `$id` VARCHAR(50), IN `$name` VARCHAR(100), IN `$gender` VARCHAR(80), IN `$mobile` INT, IN `$address` VARCHAR(50), IN `$class` VARCHAR(50), IN `$semester` VARCHAR(50), IN `$updateID` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudent` (IN `$id` VARCHAR(50), IN `$name` VARCHAR(100), IN `$gender` VARCHAR(80), IN `$mobile` INT, IN `$address` VARCHAR(50), IN `$class` VARCHAR(50), IN `$semester` VARCHAR(50), IN `$updateID` VARCHAR(50))  BEGIN
 UPDATE students SET students.RollNumber=$id,
 students.FullName=$name, students.Gender=$gender,
 
@@ -117,24 +148,24 @@ students.Class=$class,students.Semester=$semester
 WHERE students.RollNumber=$updateID;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSubject` (IN `$name` VARCHAR(100), IN `$semesterName` VARCHAR(100), IN `$id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateSubject` (IN `$name` VARCHAR(100), IN `$semesterName` VARCHAR(100), IN `$id` INT)  BEGIN
 UPDATE subjects SET subjects.Name=$name, subjects.Belongs_Semester=$semesterName
 WHERE subjects.SubjectID=$id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_class` (IN `clasid` VARCHAR(55), IN `className` VARCHAR(55), IN `update_id` VARCHAR(55))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_class` (IN `clasid` VARCHAR(55), IN `className` VARCHAR(55), IN `update_id` VARCHAR(55))  BEGIN
 
 UPDATE `classes` SET `classID`=clasid,`Name`=className WHERE classes.classID=update_id;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_simister` (IN `ID` VARCHAR(55), IN `Name` VARCHAR(55), IN `update_id` VARCHAR(55))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_simister` (IN `ID` VARCHAR(55), IN `Name` VARCHAR(55), IN `update_id` VARCHAR(55))  BEGIN
 
 UPDATE simester SET `ID`=ID,`Name`=Name WHERE simester.ID=update_id;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_user` (IN `$user_id` VARCHAR(100), IN `$username` VARCHAR(100), IN `$pass` VARCHAR(80), IN `$role` VARCHAR(50), IN `$status` VARCHAR(50), IN `$update_id` VARCHAR(100))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_user` (IN `$user_id` VARCHAR(100), IN `$username` VARCHAR(100), IN `$pass` VARCHAR(80), IN `$role` VARCHAR(50), IN `$status` VARCHAR(50), IN `$update_id` VARCHAR(100))  BEGIN
 
 UPDATE `users` SET `ID`=$user_id,`Username`=$username,`Password`=$pass,`User_Type`=$role,
 `Status`=$status WHERE users.ID=$update_id;
@@ -159,7 +190,31 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`classID`, `Name`, `date`) VALUES
-('C001', 'CA209', '2022-08-19 14:57:01');
+('C001', 'CA209', '2022-08-19 14:57:01'),
+('C120913', 'CA202', '2022-08-22 08:35:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `combanition`
+--
+
+CREATE TABLE `combanition` (
+  `id` int(11) NOT NULL,
+  `username` varchar(55) NOT NULL,
+  `bassword` varchar(55) NOT NULL,
+  `role` varchar(55) NOT NULL,
+  `status` varchar(55) NOT NULL,
+  `comapniton_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `combanition`
+--
+
+INSERT INTO `combanition` (`id`, `username`, `bassword`, `role`, `status`, `comapniton_date`) VALUES
+(31, 'ENG-CJ', '1234', 'Admin', 'Active', '2022-08-23 08:06:43'),
+(32, 'Farah', '1234', 'student', 'Active', '2022-08-23 08:11:08');
 
 -- --------------------------------------------------------
 
@@ -180,7 +235,8 @@ CREATE TABLE `simester` (
 INSERT INTO `simester` (`ID`, `Name`, `date`) VALUES
 ('S001', 'ONE', '2022-08-19 14:06:36'),
 ('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33');
+('S005', 'FIVE', '2022-08-20 17:07:33'),
+('S0007', 'six', '2022-08-22 08:35:42');
 
 -- --------------------------------------------------------
 
@@ -254,6 +310,12 @@ INSERT INTO `users` (`ID`, `Username`, `Password`, `User_Type`, `Status`, `Joine
 --
 
 --
+-- Indexes for table `combanition`
+--
+ALTER TABLE `combanition`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
@@ -264,10 +326,16 @@ ALTER TABLE `subjects`
 --
 
 --
+-- AUTO_INCREMENT for table `combanition`
+--
+ALTER TABLE `combanition`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `SubjectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `SubjectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
