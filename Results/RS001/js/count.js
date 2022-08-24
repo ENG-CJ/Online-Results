@@ -2,7 +2,7 @@
 countclass();
 countSmister();
 
-
+// countcopmanetion();
 // count clss from database
 
 function countclass(){
@@ -55,6 +55,28 @@ function countSmister(){
     });
 
 }
+// function countcopmanetion(){
+   
+//     let data = {
+//         action: "countcompanetion"
+//     };
+//     $.ajax({
+//         method: 'POST',
+//         dataType: "JSON",
+//         data: data,
+//         url: "../api/companetion.php",
+//         success: function (response) {
+//             let responseDATA = response.data[0]['Rows'];
+//             console.log(responseDATA); 
+//             $("#countcomparetion").html(responseDATA) 
+
+//         },
+//         error: function (response) {
+           
+//         }
+//     });
+
+// }
 
 
 
