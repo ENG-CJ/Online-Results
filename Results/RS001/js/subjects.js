@@ -1,6 +1,7 @@
 
 loadData();
 countUsers();
+
 GetSemesterNames();
 $(document).ready(()=>{
     loadDataTable();
@@ -241,6 +242,7 @@ function GetSemesterNames() {
     });
 
 }
+
 
 // count Users from database
 function countUsers() {

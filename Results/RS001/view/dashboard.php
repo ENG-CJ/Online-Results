@@ -96,8 +96,27 @@ require 'header.php'; require 'sidebar.php' ;
                                                 <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div> -->
                                         </div>
+                                        </div>
+                                        </div>
+                                        <!-- <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales styledCard" style="background-color: #971297FB;">
+                                    <div class="card-block">
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color:#f4f4f4">combaretions</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fa-solid fa-graduation-cap mr-2"></i><span style="color: #f4f4f4; font-weight:650;" id='countcomparetion'>10</span></h3>
+                                                </div>
+
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0" style="font-size: 12px;font-family: poppins; font-weight: 650; color: #f4f4f4;">Students</p>
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> -->
+<!--                                        
                                     </div>
-                                </div>
+                                </div> -->
                                 <!--[ year  sales section ] end-->
                                
                                 <div class="col-md-12 col-xl-4">

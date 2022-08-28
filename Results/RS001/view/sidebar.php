@@ -18,6 +18,7 @@ if(!$_SESSION['username']){
                 </a>
                 <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
             </div>
+<<<<<<< HEAD
             <?php  
             
             if ($_SESSION['type']=="admin")
@@ -110,6 +111,60 @@ if(!$_SESSION['username']){
             
             ?>
          
+=======
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label></label>
+                    </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
+                        <a href="dashboard.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <!-- <label>UI Element</label> -->
+                    </li>
+                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fas fa-user"></i></span><span class="pcoded-mtext">Users</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="users.php" class="">Manage Users</a></li>
+                            <li class=""><a href="combinanational.php" class="">create combanitional</a></li>
+                           
+                        </ul>
+                    </li>
+                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fa-solid fa-school"></i></span><span class="pcoded-mtext">Manage Collections</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="classes.php" class="">Classes</a></li>
+                            <li class=""><a href="Simester.php" class="">Semester</a></li>
+                            <li class=""><a href="subjects.php" class="">Subjects</a></li>
+                           
+                        </ul>
+                    </li>
+                    
+                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fa-solid fa-graduation-cap"></i></span><span class="pcoded-mtext">Students</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="Students.php" class="">Manage Students</a></li>
+                            <li class=""><a href="view_students.php" class="">View Students</a></li>
+                           
+                           
+                        </ul>
+                    </li>
+                   
+                   
+                   
+                   
+                    <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="auth-signup.html" class="" target="_blank">Sign up</a></li>
+                            <li class=""><a href="auth-signin.html" class="" target="_blank">Sign in</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+>>>>>>> 41cf7d766d4561c56d0ca4e9b2e90b2466fcb937
         </div>
     </nav>
     <!-- [ navigation menu ] end -->
