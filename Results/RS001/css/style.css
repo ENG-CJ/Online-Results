@@ -74,3 +74,117 @@
    
 color: #fff;
 }
+
+
+.gridStyleCard{
+    background-color: #fff; 
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    height:600px;
+   
+}
+.messageTracker h5 , .messageTracker-2 h5{
+    color: rgb(206, 202, 202);
+    font-family: poppins;
+    font-weight: 650;
+    margin-top: 50px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.visual-repr {
+    margin-top: 80px ;
+    margin-bottom: 20px;
+}
+.visual-repr h3{
+    color: rgb(173, 171, 171);
+    font-family: poppins;
+    font-weight: 650;
+   
+    font-size: 17px;
+    
+}
+ .visual-repr h3 i{
+    margin-right: 5px;
+ }
+
+
+ .makeHight{
+    overflow: auto;
+    /* overflow:  hidden;
+   overflow: scroll; */
+ 
+ }
+
+ .card-container-OnEdit{
+    background-color: #fff;
+    /* height: 520px; */
+    max-height: 1200px;
+    border-radius: 9px;
+    padding: 20px;
+    box-shadow: 0px 0px 13px 5px rgba(0,0,0,0.03);
+
+ }
+
+ .card-container-OnEdit .edit_student_card{
+    padding: 10px;
+    margin: 0px 200px;
+ }
+ .edit_student_card .title h3{
+ font-family: poppins;
+ color: gray;
+ font-size: 18px;
+
+ }
+ .edit_student_card .title p{
+    margin-top: -20px;
+    color: rgb(176, 173, 173);
+    font-family: sans-serif;
+    font-weight: 640;
+ }
+ .student-form-info .form-grouping{
+    padding: 6px 0px;
+ }
+ .card-container-OnEdit .student-form-info .form-grouping input{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 4px;
+    color: rgb(124, 121, 121);
+    font-family: poppins;
+    font-size: 17px;
+    border : 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
+    transition: 0.7s ease-in-out;
+}
+
+.card-container-OnEdit .student-form-info .form-grouping select{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 4px;
+    font-family: poppins;
+    font-size: 17px;
+    border-radius: 5px;
+    transition: 0.7s ease-in-out;
+}
+.card-container-OnEdit .student-form-info .form-grouping label{
+    font-family: poppins;
+    font-size: 19px;
+    font-weight: 560;
+    color: rgb(141, 139, 139);
+}
+.card-container-OnEdit .student-form-info #saveChangesMode{
+    background-color: #6c3fff;
+    padding: 10px;
+    font-size: 19px;
+    font-family: poppins;
+    font-weight: 650;
+    color: #fff;
+    transition: 0.7s ease-in-out ;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

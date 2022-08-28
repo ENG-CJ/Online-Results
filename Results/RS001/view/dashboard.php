@@ -1,5 +1,8 @@
 
-<?php  require 'header.php'; require 'sidebar.php' ?>
+<?php  
+
+require 'header.php'; require 'sidebar.php' ;
+?>
 
 <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -97,7 +100,131 @@
                                 </div>
                                 <!--[ year  sales section ] end-->
                                
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales styledCard" style="background-color: #E38B29;">
+                                    <div class="card-block">
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color:#f4f4f4">Published Results</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fa-solid fa-satellite-dish mr-2"></i><span style="color: #f4f4f4; font-weight:650;" id='countPublish'>10</span></h3>
+                                                </div>
 
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0" style="font-size: 12px;font-family: poppins; font-weight: 650; color: #f4f4f4;">Live</p>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- un -->
+                                <div class="col-md-12 col-xl-4">
+                                    <div class="card yearly-sales styledCard" style="background-color: #2B7A0B;">
+                                    <div class="card-block">
+                                            <h6 class="mb-4" style="font-size: 20px; font-weight : 700; color:#f4f4f4">Un-Published Results</h6>
+                                            <div class="row d-flex align-items-center">
+                                                <div class="col-9">
+                                                    <h3 class="f-w-300 d-flex align-items-center m-b-0" ><i class="fa-solid fa-eye-slash mr-2"></i><span style="color: #f4f4f4; font-weight:650;" id='countUnPublish'>10</span></h3>
+                                                </div>
+
+                                                <div class="col-3 text-right">
+                                                    <p class="m-b-0" style="font-size: 12px;font-family: poppins; font-weight: 650; color: #f4f4f4;">NotLive</p>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="progress m-t-30" style="height: 7px;">
+                                                <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-xl-12">
+                                    <div class="visual-repr">
+                                    <h3><i class="fa-solid fa-chart-pie"></i> Visual Representations</h3>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-xl-6">
+                                    <div class="card yearly-sales styledCard" style="background-color: #9772FB;">
+                                    <div class="card-block gridStyleCard">
+                                            <h4 style="font-family: poppins; color:gray; font-weight:640;font-size:15px">View How Many Students Passed Exams For The Specified Class And Semester</h4>
+                                        <div class="row">
+                                            <div class="col-md-12 col-xl-5">
+                                               <form action="">
+                                                <div class="form-group">
+                                                <label for="" style="font-family: poppins; color: #2b2b2b;">Class</label>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select</option>
+                                                </select>
+                                                </div>
+                                               </form>
+                                            </div>
+                                            <div class="col-md-12 col-xl-5">
+                                               <form action="">
+                                                <div class="form-group">
+                                                <label for="" style="font-family: poppins; color: #2b2b2b;">Semester</label>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">Select</option>
+                                                </select>
+                                                </div>
+                                               </form>
+                                            </div>
+                                        </div>
+                                         <div class="messageTracker">
+                                            <h5>Select Class And Semester To View Visual Representation😊😊</h5>
+                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 col-xl-6">
+                                    <div class="card yearly-sales styledCard " style="background-color: #9772FB;">
+                                    <div class="card-block gridStyleCard makeHight">
+                                            <h4 style="font-family: poppins; color:gray; font-weight:640;font-size:15px">Exam Visual Representation</h4>
+                                        <div class="row">
+                                            <div class="col-md-12 col-xl-4">
+                                               <form action="">
+                                                <div class="form-group">
+                                                <label for="" style="font-family: poppins; color: #2b2b2b;">Class</label>
+                                                <select name="" id="visualClass" class="form-control">
+                                                   
+                                                </select>
+                                                </div>
+                                               </form>
+                                            </div>
+                                            <div class="col-md-12 col-xl-4">
+                                               <form action="">
+                                                <div class="form-group">
+                                                <label for="" style="font-family: poppins; color: #2b2b2b;">Semester</label>
+                                                <select name="" id="visualSemester" class="form-control">
+                                                   
+                                                </select>
+                                                </div>
+                                               </form>
+                                            </div>
+                                            <div class="col-md-12 col-xl-4">
+                                               <button type="button" id="load" class="btn btn-secondary mt-4">Load</button>
+                                            </div>
+                                            <div class="col-md-12 col-xl-12">
+                                            <div id="drawChart"></div>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="messageTracker-2" id="messageTracker-2">
+                                            <img src="../images/d1-removebg-preview.png" alt="searchImage" width="400px" height="400px" srcset="">
+                                          <!-- <img src="../images/loader.gif" alt="" srcset=""> -->
+                                            <!-- <h5>Select Class And Semester To View Visual Representation😊😊</h5> -->
+                                         </div>
+                                        
+                                           
+                                        </div>
+                                         
+                                         
+                                    </div>
+                                </div>
                               
                                 <!--[social-media section] start-->
                                 <!-- <div class="col-md-12 col-xl-4">
@@ -509,5 +636,8 @@
 <script src="../js/users.js"></script>
 <script src="../js/students.js"></script>
 <script src="../js/count.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script src="../js/results.js"></script>
 
 <?php  require 'footer.php' ?>

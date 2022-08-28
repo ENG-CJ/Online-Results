@@ -1,3 +1,12 @@
+<?php    
+
+session_start();
+if(!$_SESSION['username']){
+    header("location : ../login/auth-login.php");
+    die();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +33,8 @@
 	<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
+   <script src="https://www.gstatic.com/charts/loader.js"></script>
+   
     <!-- Favicon icon -->
     <script src="https://kit.fontawesome.com/db76417cf2.js" crossorigin="anonymous"></script>
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
@@ -37,6 +47,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
 </head>
 
 <body>

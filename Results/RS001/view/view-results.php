@@ -21,23 +21,14 @@ include 'sidebar.php';
                                 <div class="card">
                                
                                         <div class="card-header">
-                                            <h5>List Of Users Data</h5>
-                                            <span class="d-block m-t-5">Manage Users Information</span>
+                                            <h5>List Of ResultData</h5>
+                                            <span class="d-block m-t-5">Manage Results Information | Publish </span>
                                         </div>
                                         <div class="card-block table-border-style">
-                                       
-                                        <button class="btn btn-success fw-bold " style="width: 20%; float: right" id="newUser">Add New</button>
                                             <div class="table-responsive">
-                                                <table class="table table-hover" id="usersTable">
-                                                    <thead class="thead-dark">
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Username</th>
-                                                            <th>User Type</th>
-                                                            <th>Status</th>
-                                                            <th>JoinedDate</th>  
-                                                            <th>Actions</th>
-                                                        </tr>
+                                                <table class="table table-hover" id="resultsTable">
+                                                    <thead class="bg-secondary text-light">
+                                                        
                                                     </thead>
                                                     <tbody>
                                                        
@@ -54,11 +45,11 @@ include 'sidebar.php';
                               </div> -->
 
                               <!-- [ adding model  ] -->
-  <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="studentEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">User Registration</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Student Registration</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <i class="fa fa-window-close" style="background-color: white; font-size: 20px;" aria-hidden="true"></i>
             </button>
@@ -72,38 +63,40 @@ include 'sidebar.php';
       </div>
           <form action="" method="POST">
 
-          <div class="form-group mb-2">
-              <label for="">UserID</label>
-              <input type="text" class="form-control" id="userID">
+         
+
+            <div class="form-group mb-2">
+              <label for="">RollNumber</label>
+              <input type="text" class="form-control" id="std_roll">
+            </div>
+            <div class="form-group mb-2">
+              <label for="">FullName</label>
+              <input type="text" class="form-control" id="std_name">
+            </div>
+            
+            <div class="form-group mb-2">
+              <label for="">Gender</label>
+              <input type="text" class="form-control" id="std_gender">
             </div>
 
             <div class="form-group mb-2">
-              <label for="">Username</label>
-              <input type="text" class="form-control" id="Username">
+              <label for="">Mobile</label>
+              <input type="number" class="form-control" id="std_number">
             </div>
-
             <div class="form-group mb-2">
-            <label for="">Password</label>
-            <input type="password" class="form-control" id="password">
+              <label for="">Address</label>
+              <input type="text" class="form-control" id="std_address">
             </div>
-
-
             <div class="form-group mb-2">
-            <label for="">UserType</label>
-           <select name="" id="type" class="form-control">
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-           </select>
+              <label for="">Class</label>
+              <input type="text" class="form-control" id="std_className">
             </div>
-
-
             <div class="form-group mb-2">
-            <label for="">Status</label>
-           <select name="" id="status" class="form-control">
-            <option value="active">Active</option>
-            <option value="Blocked">Blocked</option>
-           </select>
+              <label for="">Semester</label>
+              <input type="text" class="form-control" id="std_semesterName">
             </div>
+
+           
 
             <div class="form-group mb-2">
               <!-- user photo based -->
@@ -138,7 +131,7 @@ include 'sidebar.php';
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Expanse Creator</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Subject Info And Save Changes</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <i class="fa fa-window-close" style="background-color: white; font-size: 20px;" aria-hidden="true"></i>
             </button>
@@ -151,50 +144,32 @@ include 'sidebar.php';
       This is a danger alert—check it out!
       </div>
           <form action="" method="POST">
+
           <div class="form-group mb-2">
-              <label for="">Username</label>
-              <input type="text" class="form-control" id="ui_user_id">
+              <label for="">Subject Name</label>
+              <input type="text" class="form-control" id="ui_subjectName">
             </div>
 
-
+        
             <div class="form-group mb-2">
-              <label for="">Username</label>
-              <input type="text" class="form-control" id="ui_Username">
-            </div>
-
-            <div class="form-group mb-2">
-            <label for="">Password</label>
-            <input type="password" class="form-control" id="ui_password">
+            <label >Belongs Semester</label>
+          
+              <input type="text" class="form-control" id="ui_semester">
             </div>
 
             <div class="form-group mb-2">
-            <label for="">UserType</label>
-
-           <select name="" id="user_type" class="form-control">
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-           </select>
-
+              <!-- user photo based -->
             </div>
-
-            <div class="form-group mb-2">
-            <label for="">Status</label>
-           <select name="" id="ui_status" class="form-control">
-            <option value="active">Active</option>
-            <option value="Blocked">Blocked</option>
-           </select>
-            </div>
-
-           
-
             
-            <button type="button" class="btn btn-primary" id="editData">Update</button>
+            <button type="button" class="btn btn-primary" id="editData">Save Changes</button>
           </form>
+          <div style="text-align: left;" class="update-message hideMessageInfo">
+                <h3 ><span >Hello Bro</span></h3>
+              </div>
           </div>
-          <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
-            -->
-          </div>
+          <!-- <div class="modal-footer">
+             
+          </div> -->
         </div>
       </div>
       </div>
@@ -202,7 +177,8 @@ include 'sidebar.php';
     <!-- edit modal end -->
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/users.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="../js/results.js" ></script>
 
 
 

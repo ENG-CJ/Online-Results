@@ -1,6 +1,9 @@
 <?php
+
 include 'header.php';
 include 'sidebar.php';
+
+
 ?>
 
 <div class="pcoded-main-container">
