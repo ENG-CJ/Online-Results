@@ -59,7 +59,11 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+    <script src="../js/RebortsStudentTable.js"></script>
+=======
 
+>>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
     <!-- Required Js -->
 <script src="../../assets/js/vendor-all.min.js"></script>
 
@@ -67,6 +71,10 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="../js/user-login.js"></script>
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
 </body>
 </html>

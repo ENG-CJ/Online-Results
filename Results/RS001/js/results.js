@@ -509,11 +509,45 @@ $("#resultsTable tbody").on("click", "i.delete", function () {
 })
 
 
+<<<<<<< HEAD
+//? Edit Results  Section Stats Here
+// fetching single reult from data base 
+function fetchSingleResult(id){
+    let data = {
+        action : "fetchSingle",
+        id : id
+    };
+    $.ajax({
+        method : "post",
+        dataType : "json",
+        data : data,
+        url : "../api/results.api.php",
+        success : (response)=>{
+            //! Modal-ka Halkaan Kuso Bandhig hadduu Kushaqeenayo;
+            //! Ama (ViewOnModal()) Function-kaas Ayaa Hoos Ku Diyaarsan Inta Ugu Wac Data-da Ubaas
+            //alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
+
+            $("#editModal").modal("show");
+   
+        },
+        error : (response)=>{
+            console.log(response);
+        }
+    })
+}
+
+=======
+>>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
 $("#resultsTable tbody").on("click", "i.edit_user", function() {
    
     let resultID = $(this).attr("edit_user_id")
     fetchSingleResult(resultID);
+<<<<<<< HEAD
+    //  alert("hello")
+    console.log(resultID);
+=======
     // alert("hello")
+>>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
    
 })
 function UpdateResult(id, buttonType) {
@@ -675,6 +709,11 @@ function DisplayChart(actual) {
 }
 
 
+<<<<<<< HEAD
+// display data on modal 
+function ViewOnModel(response){
+    $("#editResultModal").modal("show");
+=======
 //? Edit Results  Section Stats Here
 // fetching single reult from data base 
 function fetchSingleResult(id){
@@ -701,6 +740,7 @@ function fetchSingleResult(id){
 // display data on modal 
 function ViewOnModel(response){
 
+>>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
 }
 
 
