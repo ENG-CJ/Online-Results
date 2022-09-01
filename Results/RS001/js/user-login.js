@@ -16,7 +16,14 @@ function LoginInto(e) {
             action: "findUser",
             username : $("#username").val(),
             password : $("#password").val()
+<<<<<<< HEAD
+
         }
+        
+    
+=======
+        }
+>>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
         IsValidUser(userData,(response)=>{
            if (response)
            {
