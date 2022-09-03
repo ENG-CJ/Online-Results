@@ -52,7 +52,7 @@ And That's It.  Locate The FILE In The Downloads Folder
 2. Nornmal User ( Portal User)
 3. Students 
 # Live Demo
-[View Preview 🔍⏳](https://myjustresults.000webhostapp.com/)
+[View Live Demo 🔍⏳](https://myjustresults.000webhostapp.com/)
 
 
 
