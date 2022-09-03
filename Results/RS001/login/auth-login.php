@@ -26,7 +26,10 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://kit.fontawesome.com/db76417cf2.js" crossorigin="anonymous"></script>
 
+
+   
 </head>
 
 <body>
@@ -53,17 +56,20 @@
                     </div>
                     
                     <button class="btn btn-primary shadow-2 mb-4" style="width: 90px;" id="login">Login</button>
-                    <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
+                   
+                </div>
+                <div id="active-message-area">
+                
                 </div>
                 </form>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-    <script src="../js/RebortsStudentTable.js"></script>
-=======
 
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
+    <script src="../js/RebortsStudentTable.js"></script>
+
+
+
     <!-- Required Js -->
 <script src="../../assets/js/vendor-all.min.js"></script>
 
@@ -71,10 +77,6 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="../js/user-login.js"></script>
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
 </body>
 </html>

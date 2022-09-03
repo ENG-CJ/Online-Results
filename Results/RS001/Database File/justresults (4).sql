@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2022 at 09:47 AM
+-- Generation Time: Sep 03, 2022 at 10:33 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -121,9 +121,59 @@ WHERE simester.Name=$semester
 ORDER BY simester.Name ASC;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findNewuser` (IN `userID` VARCHAR(55), IN `Pass` VARCHAR(55))   BEGIN
+ SELECT combanition.RollNumber,combanition.username,combanition.bassword,combanition.role
+ 
+ ,students.FullName,students.Class,students.Semester
+
+ 
+ FROM combanition
+  INNER JOIN students ON students.RollNumber=combanition.RollNumber
+ WHERE  combanition.username=userID OR combanition.RollNumber=userID AND combanition.bassword=Pass;
+ 
+ 
+ 
+
+
+
+
+SELECT subjects.Name,marks.marks,results.Precentage,results.Status
+ 
+
+
+FROM results
+INNER JOIN marks ON marks.ResultID=results.result_id
+INNER JOIN subjects ON subjects.SubjectID=marks.SubjectID
+
+WHERE StudentID=userID;
+
+
+
+
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `findUser` (IN `$username` VARCHAR(100), IN `$pass` VARCHAR(100))   BEGIN
- SELECT *FROM users
- WHERE users.Username=$username AND users.Password=$pass;
+ SELECT *FROM combanition
+ WHERE combanition.username=$username AND combanition.bassword=$pass;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetTotal` (IN `$id` VARCHAR(90))   BEGIN
+
+SELECT SUM(marks.marks)as Total FROM marks
+INNER JOIN subjects on marks.SubjectID=subjects.SubjectID
+JOIN results on marks.ResultID=results.result_id
+WHERE results.StudentID=$id;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetTotalSubject` (IN `$id` VARCHAR(100))   BEGIN
+
+SELECT COUNT(marks.SubjectID) as 'Length'FROM marks
+INNER JOIN subjects on marks.SubjectID=subjects.SubjectID
+INNER JOIN results ON marks.ResultID=results.result_id
+WHERE results.StudentID=$id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PassAndFail_Visual` (IN `$class` VARCHAR(70), IN `$semester` VARCHAR(70))   BEGIN
@@ -135,6 +185,14 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readClassNames` ()   BEGIN
 SELECT classes.Name FROM classes;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readFinalResult` (IN `$id` VARCHAR(100))   BEGIN
+
+SELECT subjects.Name,marks.marks FROM marks
+INNER JOIN subjects on marks.SubjectID=subjects.SubjectID
+INNER JOIN results on marks.ResultID=results.result_id
+WHERE results.StudentID=$id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readResult` ()   BEGIN
@@ -154,6 +212,10 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readStudents` ()   BEGIN
 
 SELECT *FROM students;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readStudentsID` ()   BEGIN
+SELECT students.RollNumber FROM students;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readStudent_for_companetion` ()   BEGIN
@@ -178,6 +240,53 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `read_companetion` ()   BEGIN
 
 
 SELECT * FROM combanition;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RebortStudents` (IN `ID` VARCHAR(88))   BEGIN
+
+CREATE TEMPORARY TABLE Reborts
+SELECT students.RollNumber,students.FullName,students.Gender,students.Class,students.Semester
+
+
+FROM students
+
+WHERE RollNumber=ID;
+
+
+
+SELECT * FROM Reborts;
+
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RebortStudentsTABLE` (IN `ID` VARCHAR(88))   BEGIN
+
+
+
+CREATE TEMPORARY TABLE Reborts
+
+
+
+SELECT subjects.Name,marks.marks,results.Precentage,results.Status
+ 
+
+
+FROM results
+INNER JOIN marks ON marks.ResultID=results.result_id
+INNER JOIN subjects ON subjects.SubjectID=marks.SubjectID
+
+WHERE StudentID=ID;
+SELECT * FROM Reborts;
+
+
+
+
+
+
+
+
+
 
 END$$
 
@@ -242,20 +351,9 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`classID`, `Name`, `date`) VALUES
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C002', 'CA201', '2022-08-23 14:42:14'),
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59'),
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59'),
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59'),
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59'),
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59'),
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59');
+('C001', 'CA201', '2022-08-28 08:13:11'),
+('C002', 'CA202', '2022-08-28 08:13:22'),
+('c1000', 'CA202', '2022-08-31 13:48:06');
 
 -- --------------------------------------------------------
 
@@ -277,8 +375,17 @@ CREATE TABLE `combanition` (
 --
 
 INSERT INTO `combanition` (`id`, `username`, `bassword`, `role`, `status`, `comapniton_date`) VALUES
-(31, 'ENG-CJ', '1234', 'Admin', 'Active', '2022-08-23 08:06:43'),
-(32, 'Farah', '1234', 'student', 'Active', '2022-08-23 08:11:08');
+(34, 'ST101', '6767', 'student', 'Active', '2022-09-01 14:59:37'),
+(35, 'ST1002', '7878', 'student', 'Active', '2022-09-01 15:33:00'),
+(36, 'ST1003', '8989', 'student', 'Active', '2022-09-01 15:33:09'),
+(37, 'ST100', '7676', 'student', 'Active', '2022-09-01 16:39:18'),
+(38, 'ST104', '1212', 'student', 'Active', '2022-09-02 05:39:51'),
+(39, 'ST105', '1919', 'student', 'Active', '2022-09-02 05:40:02'),
+(40, 'ST106', '2020', 'student', 'Active', '2022-09-02 05:40:10'),
+(41, 'ST107', '3030', 'student', 'Active', '2022-09-02 05:40:18'),
+(42, 'Nasra', '9090', 'Admin', 'NoActive', '2022-09-03 07:46:27'),
+(43, 'ENG-CJ', '12345', 'Admin', 'Active', '2022-09-03 07:46:42'),
+(44, 'Huseen', '6767', 'User', 'Active', '2022-09-03 07:59:01');
 
 -- --------------------------------------------------------
 
@@ -301,7 +408,40 @@ INSERT INTO `marks` (`marks_id`, `SubjectID`, `ResultID`, `marks`) VALUES
 (70, 17, 47, 90),
 (71, 17, 48, 15),
 (72, 17, 49, 90),
-(73, 17, 50, 78);
+(73, 17, 50, 78),
+(74, 19, 51, 90),
+(75, 21, 51, 85),
+(76, 19, 52, 43),
+(77, 21, 52, 32),
+(78, 19, 53, 90),
+(79, 21, 53, 80),
+(80, 19, 54, 90),
+(81, 21, 54, 80),
+(82, 19, 55, 67),
+(83, 21, 55, 13),
+(144, 27, 55, 100),
+(145, 25, 55, 100),
+(146, 26, 55, 50),
+(147, 25, 56, 90),
+(148, 22, 56, 98),
+(149, 26, 56, 99),
+(150, 23, 56, 100),
+(151, 24, 56, 97),
+(152, 25, 57, 100),
+(153, 22, 57, 78),
+(154, 26, 57, 89),
+(155, 23, 57, 80),
+(156, 24, 57, 88),
+(157, 25, 58, 90),
+(158, 22, 58, 89),
+(159, 26, 58, 78),
+(160, 23, 58, 80),
+(161, 24, 58, 90),
+(162, 25, 59, 97),
+(163, 22, 59, 92),
+(164, 26, 59, 87),
+(165, 23, 59, 95),
+(166, 24, 59, 89);
 
 -- --------------------------------------------------------
 
@@ -326,10 +466,12 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`result_id`, `SemesterID`, `Class`, `StudentID`, `Precentage`, `Status`, `Decision`, `Published`, `DateAdded`) VALUES
-(47, 'TWO', 'CA209', 'ST1202', 90.00, 'A', 'Pass', 'No', '2022-08-27 14:14:51'),
-(48, 'TWO', 'CA209', 'ST1203', 15.00, 'Fail', 'Fail', 'No', '2022-08-26 16:06:30'),
-(49, 'TWO', 'CA209', 'ST1202', 90.00, 'A', 'Pass', 'No', '2022-08-26 16:08:52'),
-(50, 'TWO', 'CA209', 'ST1202', 78.00, 'C', 'Pass', 'No', '2022-08-27 14:15:16');
+(53, 'TWO', 'CA202', 'ST101', 85.00, 'B', 'Pass', 'Yes', '2022-08-28 08:51:05'),
+(54, 'TWO', 'CA202', 'ST100', 85.00, 'B', 'Pass', 'No', '2022-08-28 08:44:45'),
+(56, 'FOUR', 'CA202', 'ST104', 96.80, 'A', 'Pass', 'Yes', '2022-09-03 08:02:36'),
+(57, 'FOUR', 'CA202', 'ST105', 87.00, 'B', 'Pass', 'No', '2022-09-02 05:38:49'),
+(58, 'FOUR', 'CA202', 'ST106', 85.40, 'B', 'Pass', 'No', '2022-09-02 05:39:07'),
+(59, 'FOUR', 'CA202', 'ST107', 92.00, 'A', 'Pass', 'No', '2022-09-02 05:39:28');
 
 -- --------------------------------------------------------
 
@@ -348,33 +490,11 @@ CREATE TABLE `simester` (
 --
 
 INSERT INTO `simester` (`ID`, `Name`, `date`) VALUES
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42'),
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42'),
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42'),
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42'),
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42'),
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42');
+('S001', 'ONE', '2022-08-28 08:13:40'),
+('S002', 'TWO', '2022-08-28 08:13:45'),
+('S002', 'THREE', '2022-08-28 08:13:52'),
+('S005', 'FIVE', '2022-09-02 05:32:57'),
+('S004', 'FOUR', '2022-09-02 05:33:58');
 
 -- --------------------------------------------------------
 
@@ -398,26 +518,14 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`RollNumber`, `FullName`, `Gender`, `Mobile`, `Address`, `Class`, `Semester`, `RegisteredDate`) VALUES
-('ST1200', 'Abdul Rahman Haaji', 'Male', 216218, 'Somalia', 'CA209', 'FIVE', '2022-08-21 13:25:58'),
-('ST1202', 'Mohamed', 'Male', 615178163, 'Hodan', 'CA209', 'TWO', '2022-08-23 09:06:25'),
-('ST1203', 'Nasra', 'Female', 61517181, 'yaqshid', 'CA209', 'TWO', '2022-08-23 14:39:37'),
-('ST1204', 'Farah ali', 'Male', 615171890, 'yaqshid', 'CA209', 'TWO', '2022-08-23 14:39:52'),
-('ST1205', 'Mascuud Abdirahman', 'Male', 1727189, 'Hodan', 'CA201', 'FIVE', '2022-08-23 14:43:03'),
-('ST1206', 'Abdullahi Khaliid', 'Male', 1727180, 'Hodan', 'CA201', 'FIVE', '2022-08-23 14:43:19'),
-('ST1207', 'Mohamed Amin', 'Male', 1727186, 'Hodan', 'CA201', 'FIVE', '2022-08-23 14:43:34'),
-('ST1208', 'Sahra ali', 'Female', 912829, 'hodan', 'CA201', 'ONE', '2022-08-24 09:14:08'),
-('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
-('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
-('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
-('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
-('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
-('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51');
+('ST100', 'Mohamed', 'Male', 71227616, 'Somalia', 'CA202', 'TWO', '2022-08-28 08:15:14'),
+('ST101', 'Ali', 'Male', 7122767, 'Somalia', 'CA202', 'TWO', '2022-08-28 08:15:32'),
+('ST1002', 'Nasra Mohamed', 'Female', 2817271, 'Hodan', 'CA202', 'THREE', '2022-09-01 15:32:13'),
+('ST1003', 'Abdulrahman Ali', 'Male', 28172790, 'Hodan', 'CA201', 'ONE', '2022-09-01 15:32:34'),
+('ST104', 'Abdulrahman Haaji', 'Male', 281781, 'Hodan', 'CA202', 'FOUR', '2022-09-02 05:34:43'),
+('ST105', 'Hamdi Ahmed', 'Female', 612727279, 'Hodan', 'CA202', 'FOUR', '2022-09-02 05:35:06'),
+('ST106', 'Mascuud Abdirahman Shiekh', 'Male', 612727666, 'Hodan', 'CA202', 'FOUR', '2022-09-02 05:35:27'),
+('ST107', 'Fahma Farah Hassan', 'Female', 6127255, 'Hodan', 'CA202', 'FOUR', '2022-09-02 05:35:51');
 
 -- --------------------------------------------------------
 
@@ -436,11 +544,14 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`SubjectID`, `Name`, `Belongs_Semester`) VALUES
-(8, 'SQL SERVER2', 'ONE'),
-(9, 'Mysql', 'FIVE'),
-(16, 'PHP', 'ONE'),
-(17, 'Python', 'TWO'),
-(18, 'C# Programming', 'ONE');
+(19, 'Python', 'TWO'),
+(20, 'JavaScript', 'THREE'),
+(21, 'Calclus', 'TWO'),
+(22, 'Java', 'FOUR'),
+(23, 'DLD', 'FOUR'),
+(24, 'Statitics', 'FOUR'),
+(25, 'P.Management', 'FOUR'),
+(26, 'C# Programming 1', 'FOUR');
 
 -- --------------------------------------------------------
 
@@ -462,14 +573,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Username`, `Password`, `User_Type`, `Status`, `JoinedDate`) VALUES
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
 ('US002', 'Nasra', '9090', 'user', 'active', '2022-08-22 16:53:02'),
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14');
+('US001', 'ENG-CJ', '12345', 'admin', 'active', '2022-09-03 07:57:48'),
+('US003', 'Huseen', '8080', 'user', 'active', '2022-09-03 07:58:33');
 
 --
 -- Indexes for dumped tables
@@ -507,25 +613,25 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `combanition`
 --
 ALTER TABLE `combanition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `marks`
 --
 ALTER TABLE `marks`
-  MODIFY `marks_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `marks_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `SubjectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `SubjectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

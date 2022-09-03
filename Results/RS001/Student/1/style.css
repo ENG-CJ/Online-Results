@@ -1,0 +1,37 @@
+.info{
+    margin-bottom: 20px;
+}
+
+.download{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.NoArea{
+    margin-top: 90px;
+}
+.notFoundArea{
+    border: 1px solid rgb(185, 184, 184);
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.description{
+    font-family: verdana;
+    color: #74738e;
+    font-size: 14px;
+
+    font-weight: 590;
+}
+.btns{
+    margin-top: 60px;
+   text-align: center;
+   
+}
+.image-found{
+    text-align: center;
+}
+@media print {
+    .hidden-print {
+      display: none !important;
+    }
+  }
+

@@ -18,7 +18,7 @@ if(!$_SESSION['username']){
                 </a>
                 <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
             </div>
-<<<<<<< HEAD
+
             <?php  
             
             if ($_SESSION['type']=="admin")
@@ -96,8 +96,8 @@ if(!$_SESSION['username']){
                 <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="fa-solid fa-square-poll-horizontal"></i></span><span class="pcoded-mtext">Results</span></a>
                     <ul class="pcoded-submenu">
-                        <li class=""><a href="Students.php" class="">Manage Results</a></li>
-                        <li class=""><a href="view_students.php" class="">View Results</a></li>
+                        <li class=""><a href="results.php" class="">Manage Results</a></li>
+                        <li class=""><a href="view_results.php" class="">View Results</a></li>
  
                     </ul>
                 </li>
@@ -108,10 +108,10 @@ if(!$_SESSION['username']){
                 
             </ul>
         </div>';
-            
+           
             ?>
          
-=======
+
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
                     <li class="nav-item pcoded-menu-caption">
@@ -173,7 +173,7 @@ if(!$_SESSION['username']){
                     
                 </ul>
             </div>
->>>>>>> 41cf7d766d4561c56d0ca4e9b2e90b2466fcb937
+
         </div>
     </nav>
     <!-- [ navigation menu ] end -->

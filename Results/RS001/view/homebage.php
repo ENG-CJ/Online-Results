@@ -1,31 +1,67 @@
 
-
-
 <?php
-
-
-
+include '../config/conn.php';
 session_start();
 if(!$_SESSION['username']){
     header("location : ../login/auth-login.php");
     die();
+    return;
 }
-
-
-
-// if (isset($_GET['id'])){
-//   include("../config/conn.php");
-//    $id=$_GET['id'];
-//    $sql=mysqli_query($conn," CALL `RebortStudents`='STD2090'
-        
-//          ");
-//    while($record=mysqli_fetch_assoc($sql)){
-//     $first= $record["RollNumber"];
+class ReadStudentInfo{
+  private   static  $total=0;
+  private  static $average=0;
    
+  public static function StudentInformation(){
+    $studentID=$_GET['username'];
+    $statement= "SELECT *FROM students where RollNumber='$studentID';";
+     $result= connection::GetMySqlConnection()->query($statement);
+    $data=array("data"=>$result->fetch_assoc());
+    return $data;
+  }
 
-//      }
-// }
+  public static function ResultInformation(){
+    $studentID=$_GET['username'];
+    $statement= "CALL readFinalResult('$studentID');";
+     $result= connection::GetMySqlConnection()->query($statement);
+    $data=array();
+     while($row = $result->fetch_assoc()){
+    
+      $data [] =array($row);
+     
+     }
+    return $data;
+  }
 
+  public static function getSubjectsLength():int{
+    $studentID=$_GET['username'];
+    $statement= "CALL GetTotalSubject('$studentID');";
+     $result= connection::GetMySqlConnection()->query($statement);
+    $length=0;
+     while($row = $result->fetch_assoc()){
+      $length=$row['Length'];
+     }
+     
+    return $length;
+  }
+
+  public static function GetTotal(){
+    $studentID=$_GET['username'];
+    $statement= "CALL GetTotal('$studentID');";
+     $result= connection::GetMySqlConnection()->query($statement);
+     $total=0;
+     while($row = $result->fetch_assoc()){
+      $total=$row['Total'];
+     }
+     
+    return $total;
+  }
+
+  public static function GetAverage():float{
+    $avg = self::GetTotal() / self::getSubjectsLength();
+    return $avg;
+  }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,84 +121,102 @@ if(!$_SESSION['username']){
                
                             <!-- [ Main Content ] start -->
                                 <!-- card -->
-                                <div class="card-container col-12">
-                                    <div class="row">
-                                    <div class="col-3 col-lg-6">
-                                        
-                                    </div>
+                                <?php
+                                foreach(ReadStudentInfo::StudentInformation()as $row){
 
-                                    <div class="col-lg-7 col-11 mt-5  mx-auto" style="border-radius:55px ; box-shadow: 50px;">
-                                        <h1 class="">Simester-win</h1>
-                                        <div class="row">
-
-                                   
-                                      <div class="container bg-success">
-                                        <div class="titale">
-                                        <h1 class="text-center">student result</h1>
-                                    </div>
-                                </div>
-                                        <div class="card  bg-light">
-                                          <div class="row">
-                                         <div class="text-right col-md-9 mt-5">
-                                          <h4>Student iD:  <?php echo $_SESSION['ID'] ?></h4>
-                                          <h5>Student Name: <span class="text-danger" > <?php echo $_SESSION['username'] ?></span></h5>
-                                   
-                                          <h5>Class: <span class="text-danger"> <?php echo   $_SESSION['Class'] ?></span></h5>
-                                       
-                                          <h5>SIMESTER: <span class="text-danger"> <?php echo  $_SESSION['Semester'] ?></span></h5>
-                                       
-                                          <h5>Curent Simester: <span class="text-danger"> 4</span></h5>
-                                       
-                                         </div>
-                                         <div class="text-right col-md-3 mt-5">
-                                          <h4>parecentage:</h4>
-                                          <p>Total marks: 19666%</p>
-                                         </div>
-                                         <hr>
-
-
-                                         <hr>
-                                         <div class="table-responsive">
-                                          <table class="table table-bordered border-primary" id="simistertable">
-                                              <thead class="bg-success text-light">
-                                                  <tr>
-                                                    <th>Subject</th>
-                                                   
-                                                      <th>marks</th>
-                                                      <th>parecentage</th>
-                                                      <th>Grade LEVEL</th>
-                                                   
-                                                    
-                                                    
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                        </div>
-                                        </div>
-                                   
-                                    </div>
-                                  </div>
-                                    <div class="col-2">
-                                      
-                                    </div>
-                                   
-                                </div>
-                                            </div>
-                                            </div>
-                                  
-                                          
+                                  echo ' 
                                  
 
+                                  <div class="card-container col-12">
+                                  <div class="row">
+                                  <div class="col-3 col-lg-6">
+                                      
+                                  </div>
+
+                                  <div class="col-lg-7 col-11 mt-5  mx-auto" style="border-radius:55px ; box-shadow: 50px;">
+                                      <h1 class="">Simester-win  </h1>
+                                      <div class="row">
+
+                                 
+                                    <div class="container bg-success">
+                                      <div class="titale">
+                                      <h1 class="text-center" style="color : white;">student result</h1>
+                                  </div>
+                              </div>
+                                      
+                                       <hr>
+                                       <div class="card  bg-light">
+                                       <div class="row">
+                                      <div class="text-right col-md-9 mt-5">
+                                       <h4>Student iD: '.$row['RollNumber'].'</h4>
+                                       <h5>Student Name:  <span class="text-danger" > '.$row['FullName'].' </span></h5>
+                                
+                                       <h5>Class: <span class="text-danger"> '.$row['Class'].'</span></h5>
+                                    
+                                      
+                                    
+                                       <h5>Curent Simester: <span class="text-danger"> '.$row['Semester'].'</span></h5>
+                                    
+                                      </div>
+                                      <div class="text-right col-md-3 mt-5">
+                                       <h4>parecentage:</h4>
+                                       <p>Total marks: 19666%</p>
+                                      </div>
+                                      <hr>
+     
+
+                                       <hr>
+                                       
+                                      </div>
+                                      </div> 
+                                 
+                                  </div>
+                                </div>
+                                  <div class="col-2">
+                                    
+                                  </div>
+                                 
+                              </div>
+                                          </div>
+                                          </div>
 
 
+                                 
+                                  ';
 
+                                  
+                                }
+                                
+                              ?>
+                                
+                                <div class="table-responsive">
+                                        <table class="table table-bordered border-primary" id="simistertable">
+                                        
+                                        <thead class="bg-success text-light">
+                                        <tr>
+                                          <th>Subject</th>
+                                         
+                                            <th>marks</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                            <tbody>
+                                              <?php foreach(ReadStudentInfo::ResultInformation() as  $data):?>
+                                                <?php foreach($data as $row):?>
+                                                  <tr>
+                                                    <td style="color: white;"><?php echo $row['Name'] ?></td>
+                                                    <td style="color: white;"><?php echo $row['marks'] ?></td>
 
-
-
+                                                  </tr>
+                                                
+                                                <?php endforeach;?>
+                                              <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                        <h3 style="color: white;">Total : <?php echo ReadStudentInfo::GetTotal()?></h3>
+                                        <h3 style="color: white;">Average : <?php echo ReadStudentInfo::GetAverage()?>%</h3>
+                                    </div>
+                                
                                           
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

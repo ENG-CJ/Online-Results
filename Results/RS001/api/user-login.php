@@ -12,44 +12,40 @@ if (isset($action))
 
 
 class UserLogin{
-
-    function findUser(){
+     function FindUser(){
         extract($_POST);
         $data=array();
-<<<<<<< HEAD
-        $query = " CALL `findNewuser`('$username','$password')";
-        $result=connection::GetMySqlConnection()->query($query);
-
-     
-
-        if (mysqli_num_rows($result)>0){
-            $data=array("isExist"=>true);
-            $row=$result->fetch_assoc();
-            $_SESSION['type']=$row['role'];
-            $_SESSION['ID']=$row['RollNumber'];
-            $_SESSION['username']=$row['username'];
-            $_SESSION['Semester']=$row['Semester'];
-            $_SESSION['Class']=$row['Class'];
-=======
+        $responseData=array();
         $query = "CALL findUser('$username','$password')";
-        $result=connection::GetMySqlConnection()->query($query);
-        if (mysqli_num_rows($result)>0){
-            $data=array("isExist"=>true);
-            $row=$result->fetch_assoc();
-            $_SESSION['type']=$row['User_Type'];
-            $_SESSION['userID']=$row['ID'];
-            $_SESSION['username']=$row['Username'];
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
+        $resultSet = connection::GetMySqlConnection()->query($query);
+        if (mysqli_num_rows($resultSet)>0){
+           
+            while($row= $resultSet->fetch_assoc()){
+            $data []=array("data"=>$row);
+            }
+            $Query = "SELECT results.Published FROM results WHERE results.StudentID='$username';";
+            $result=connection::GetMySqlConnection()->query($Query);
+            foreach($result as $r)
+                $data['IsPublished']=$r['Published'];
+            $responseData= array("isExist"=>true, "data"=>$data);
+            self::SetSession($resultSet);
         }
         else
-            $data=array("isExist"=>false);
-        
-        echo json_encode($data);
-    }
+            $responseData=array("isExist"=>false,"data"=>connection::GetMySqlConnection()->error);
 
+        echo json_encode($responseData);
+     }
+
+
+     private function SetSession($result){
+        foreach($result as $row)
+        {
+            $_SESSION['userID']=$row['id'];
+            $_SESSION['username']=$row['username'];
+            $_SESSION['type']=$row['role'];
+        }
+     }
 }
-
-
 
 
 ?>

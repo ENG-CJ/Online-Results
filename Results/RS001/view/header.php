@@ -46,16 +46,17 @@ if(!$_SESSION['username']){
     <!-- vendor css -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js//companetion.css" ></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<<<<<<< HEAD
+
 
     <script type = "text/javascript">
          google.charts.load('current', {packages: ['corechart']});     
       </script>
-=======
-    <script src="../js/companetion.css" ></script>
+
+    
   
->>>>>>> 41cf7d766d4561c56d0ca4e9b2e90b2466fcb937
+
 </head>
 
 <body>

@@ -1,14 +1,14 @@
 GetSemesterNames();
 GetClassNames();
 DisplayResults();
-countPublishOrUnPublish();
+ countPublishOrUnPublish();
 $(document).ready(() => {
     CreateDataTable();
 })
 $("#semesterName").on("change", FetchSubject)
 $("#className").on("change", fetchStudents)
 $("#saveData").on("click", SaveData)
-$("#modal").on("click", ()=>{
+$("#modal").on("click", () => {
     $("#exampleModal").modal("show");
 })
 $("#load").on("click", fetchVisual)
@@ -487,7 +487,7 @@ $("#resultsTable tbody").on("click", "button.enableButton", function () {
 
 
 $("#resultsTable tbody").on("click", "i.delete", function () {
-   
+
     Swal.fire({
         title: 'Are you sure?',
         text: "Do You Want To Continue To Delete This Record?",
@@ -509,46 +509,45 @@ $("#resultsTable tbody").on("click", "i.delete", function () {
 })
 
 
-<<<<<<< HEAD
+
 //? Edit Results  Section Stats Here
 // fetching single reult from data base 
-function fetchSingleResult(id){
+function fetchSingleResult(id) {
     let data = {
-        action : "fetchSingle",
-        id : id
+        action: "fetchSingle",
+        id: id
     };
     $.ajax({
-        method : "post",
-        dataType : "json",
-        data : data,
-        url : "../api/results.api.php",
-        success : (response)=>{
+        method: "post",
+        dataType: "json",
+        data: data,
+        url: "../api/results.api.php",
+        success: (response) => {
             //! Modal-ka Halkaan Kuso Bandhig hadduu Kushaqeenayo;
             //! Ama (ViewOnModal()) Function-kaas Ayaa Hoos Ku Diyaarsan Inta Ugu Wac Data-da Ubaas
             //alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
 
             $("#editModal").modal("show");
-   
+
         },
-        error : (response)=>{
+        error: (response) => {
             console.log(response);
         }
     })
 }
 
-=======
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
-$("#resultsTable tbody").on("click", "i.edit_user", function() {
-   
+
+
+$("#resultsTable tbody").on("click", "i.edit_user", function () {
+
     let resultID = $(this).attr("edit_user_id")
     fetchSingleResult(resultID);
-<<<<<<< HEAD
+
     //  alert("hello")
     console.log(resultID);
-=======
-    // alert("hello")
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
-   
+
+    // alert("hello")s
+
 })
 function UpdateResult(id, buttonType) {
 
@@ -709,62 +708,56 @@ function DisplayChart(actual) {
 }
 
 
-<<<<<<< HEAD
+
 // display data on modal 
-function ViewOnModel(response){
+function ViewOnModel(response) {
     $("#editResultModal").modal("show");
-=======
-//? Edit Results  Section Stats Here
-// fetching single reult from data base 
-function fetchSingleResult(id){
-    let data = {
-        action : "fetchSingle",
-        id : id
-    };
-    $.ajax({
-        method : "post",
-        dataType : "json",
-        data : data,
-        url : "../api/results.api.php",
-        success : (response)=>{
-            //! Modal-ka Halkaan Kuso Bandhig hadduu Kushaqeenayo;
-            //! Ama (ViewOnModal()) Function-kaas Ayaa Hoos Ku Diyaarsan Inta Ugu Wac Data-da Ubaas
-            alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
-        },
-        error : (response)=>{
-            console.log(response);
-        }
-    })
 }
+    //? Edit Results  Section Stats Here
+    // fetching single reult from data base 
+    function fetchSingleResult(id) {
+        let data = {
+            action: "fetchSingle",
+            id: id
+        };
+        $.ajax({
+            method: "post",
+            dataType: "json",
+            data: data,
+            url: "../api/results.api.php",
+            success: (response) => {
+                //! Modal-ka Halkaan Kuso Bandhig hadduu Kushaqeenayo;
+                //! Ama (ViewOnModal()) Function-kaas Ayaa Hoos Ku Diyaarsan Inta Ugu Wac Data-da Ubaas
+                alert("This is Not Currently Working..\nThe ID You Want To Update Is " + id + "\nWe Will Stablish This Event, Still Processing...");
+            },
+            error: (response) => {
+                console.log(response);
+            }
+        })
+    }
 
-// display data on modal 
-function ViewOnModel(response){
 
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
-}
+    // count publish result and unpublish
 
+    function countPublishOrUnPublish() {
 
-// count publish result and unpublish
+        let data = {
+            action: "countPublishOrUnPublish"
+        };
+        $.ajax({
+            method: 'POST',
+            dataType: "JSON",
+            data: data,
+            url: "../api/results.api.php",
+            success: function (response) {
+                let { Published, Unpublished } = response;
+                $("#countPublish").text(Published.Published)
+                $("#countUnPublish").text(Unpublished.UnPublished)
 
-function countPublishOrUnPublish() {
-   
-    let data = {
-        action: "countPublishOrUnPublish"
-    };
-    $.ajax({
-        method: 'POST',
-        dataType: "JSON",
-        data: data,
-        url: "../api/results.api.php",
-        success: function (response) {
-           let {Published, Unpublished} = response;
-           $("#countPublish").text(Published.Published)
-           $("#countUnPublish").text(Unpublished.UnPublished)
+            },
+            error: function (response) {
+                console.log(response)
+            }
+        });
 
-        },
-        error: function (response) {
-           console.log(response)
-        }
-    });
-
-}
+    }

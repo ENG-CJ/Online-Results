@@ -83,7 +83,7 @@ public static function readusers(){
 public static function readstudent(){
 
        
-    $query="CALL `readStudent_for_companetion`()";
+    $query="CALL `readStudentsID`()";
     $resultSet= connection::GetMySqlConnection()->query($query);
     $data=array();
     $responseData= array();
