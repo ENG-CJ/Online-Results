@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2022 at 10:48 AM
+-- Generation Time: Sep 03, 2022 at 12:39 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -25,6 +25,16 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddMarks` (IN `$subjectID` INT, IN `$resultID` INT, IN `$marks` INT)  BEGIN
+ INSERT INTO marks(`SubjectID`,`ResultID`,`marks`)
+ VALUES($subjectID,$resultID,$marks);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AddResult` (IN `$semesterID` VARCHAR(100), IN `$studentID` VARCHAR(100), IN `$publish` VARCHAR(30), IN `$precentage` FLOAT(4,2), IN `$status` VARCHAR(50), IN `$class` VARCHAR(50))  BEGIN
+ INSERT INTO results(`SemesterID`,`StudentID`,`Published`,`Precentage`,`Status`,`Class`)
+ VALUES($semesterID,$studentID,$precentage,$publish,$status,$class);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addStudent` (IN `$roll` VARCHAR(50), IN `$name` VARCHAR(100), IN `$gender` VARCHAR(60), IN `$mobile` INT, IN `$address` VARCHAR(50), IN `$class` VARCHAR(50), IN `$semester` VARCHAR(50))  BEGIN
  
 INSERT INTO students(`RollNumber`,`FullName`,`Gender`,`Mobile`,`Address`,`Class`,`Semester`)
@@ -77,6 +87,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `countUsers` ()  BEGIN
 SELECT COUNT(*) as 'Rows' FROM users ;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DeleteResults` (IN `$id` INT)  BEGIN
+DELETE FROM results WHERE results.result_id=$id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteStudent` (IN `$id` VARCHAR(100))  BEGIN
  DELETE FROM students WHERE students.RollNumber=$id;
 END$$
@@ -95,8 +109,73 @@ SELECT *FROM students
 WHERE students.RollNumber=$roll or students.Mobile=$mobile;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `fetchStudents` (IN `$className` VARCHAR(100), IN `$semesterName` VARCHAR(100))  BEGIN
+   SELECT *FROM students
+   WHERE students.Class=$className AND students.Semester=$semesterName;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `fetchSubjects` (IN `$semester` VARCHAR(50))  BEGIN
+SELECT  subjects.SubjectID,subjects.Name FROM subjects
+INNER JOIN simester ON subjects.Belongs_Semester=simester.Name
+WHERE simester.Name=$semester
+ORDER BY simester.Name ASC;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findNewuser` (IN `userID` VARCHAR(55), IN `Pass` VARCHAR(55))  BEGIN
+ SELECT combanition.RollNumber,combanition.username,combanition.bassword,combanition.role
+ 
+ ,students.FullName,students.Class,students.Semester
+
+ 
+ FROM combanition
+  INNER JOIN students ON students.RollNumber=combanition.RollNumber
+ WHERE  combanition.username=userID OR combanition.RollNumber=userID AND combanition.bassword=Pass;
+ 
+ 
+ 
+
+
+
+
+SELECT subjects.Name,marks.marks,results.Precentage,results.Status
+ 
+
+
+FROM results
+INNER JOIN marks ON marks.ResultID=results.result_id
+INNER JOIN subjects ON subjects.SubjectID=marks.SubjectID
+
+WHERE StudentID=userID;
+
+
+
+
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findUser` (IN `$username` VARCHAR(100), IN `$pass` VARCHAR(100))  BEGIN
+ SELECT *FROM users
+ WHERE users.Username=$username AND users.Password=$pass;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PassAndFail_Visual` (IN `$class` VARCHAR(70), IN `$semester` VARCHAR(70))  BEGIN
+
+SELECT results.Decision, COUNT(results.Decision) as Perecentage FROM results
+WHERE results.SemesterID=$semester AND results.Class=$class
+GROUP BY results.Decision;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readClassNames` ()  BEGIN
 SELECT classes.Name FROM classes;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `readResult` ()  BEGIN
+SELECT  results.result_id as ResultID ,
+results.SemesterID as Semester,students.FullName,
+results.Precentage,results.Status,results.Published,
+results.DateAdded
+FROM results
+INNER JOIN students on results.StudentID=students.RollNumber;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `readSemesterName` ()  BEGIN
@@ -134,9 +213,61 @@ SELECT * FROM combanition;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RebortStudents` (IN `ID` VARCHAR(88))  BEGIN
+
+CREATE TEMPORARY TABLE Reborts
+SELECT students.RollNumber,students.FullName,students.Gender,students.Class,students.Semester
+
+
+FROM students
+
+WHERE RollNumber=ID;
+
+
+
+SELECT * FROM Reborts;
+
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RebortStudentsTABLE` (IN `ID` VARCHAR(88))  BEGIN
+
+
+
+CREATE TEMPORARY TABLE Reborts
+
+
+
+SELECT subjects.Name,marks.marks,results.Precentage,results.Status
+ 
+
+
+FROM results
+INNER JOIN marks ON marks.ResultID=results.result_id
+INNER JOIN subjects ON subjects.SubjectID=marks.SubjectID
+
+WHERE StudentID=ID;
+SELECT * FROM Reborts;
+
+
+
+
+
+
+
+
+
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `searchSemesterName` (IN `$name` VARCHAR(100))  BEGIN
  SELECT simester.Name FROM simester
  WHERE simester.Name=$name;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateResult` (IN `$resultID` INT, IN `$publish` VARCHAR(50))  BEGIN
+ UPDATE results SET results.Published=$publish
+ WHERE results.result_id=$resultID;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStudent` (IN `$id` VARCHAR(50), IN `$name` VARCHAR(100), IN `$gender` VARCHAR(80), IN `$mobile` INT, IN `$address` VARCHAR(50), IN `$class` VARCHAR(50), IN `$semester` VARCHAR(50), IN `$updateID` VARCHAR(50))  BEGIN
@@ -156,6 +287,12 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_class` (IN `clasid` VARCHAR(55), IN `className` VARCHAR(55), IN `update_id` VARCHAR(55))  BEGIN
 
 UPDATE `classes` SET `classID`=clasid,`Name`=className WHERE classes.classID=update_id;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_results` (IN `Simester` VARCHAR(55), IN `update_id` INT)  BEGIN
+
+UPDATE results SET results.SemesterID=Simester WHERE results.result_id=update_id;
 
 END$$
 
@@ -190,8 +327,7 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`classID`, `Name`, `date`) VALUES
-('C001', 'CA209', '2022-08-19 14:57:01'),
-('C120913', 'CA202', '2022-08-22 08:35:59');
+('c1000', 'CA202', '2022-08-31 13:48:06');
 
 -- --------------------------------------------------------
 
@@ -201,6 +337,7 @@ INSERT INTO `classes` (`classID`, `Name`, `date`) VALUES
 
 CREATE TABLE `combanition` (
   `id` int(11) NOT NULL,
+  `RollNumber` varchar(80) NOT NULL,
   `username` varchar(55) NOT NULL,
   `bassword` varchar(55) NOT NULL,
   `role` varchar(55) NOT NULL,
@@ -212,9 +349,72 @@ CREATE TABLE `combanition` (
 -- Dumping data for table `combanition`
 --
 
-INSERT INTO `combanition` (`id`, `username`, `bassword`, `role`, `status`, `comapniton_date`) VALUES
-(31, 'ENG-CJ', '1234', 'Admin', 'Active', '2022-08-23 08:06:43'),
-(32, 'Farah', '1234', 'student', 'Active', '2022-08-23 08:11:08');
+INSERT INTO `combanition` (`id`, `RollNumber`, `username`, `bassword`, `role`, `status`, `comapniton_date`) VALUES
+(31, 'STD20', 'ENG-CJ', '1234', 'Admin', 'Active', '2022-08-31 10:56:45'),
+(32, 'ST1200', 'Farah', '1234', 'student', 'Active', '2022-08-31 05:50:29'),
+(33, 'STD2090', 'mascuud abdirahman', '12', 'student', 'Active', '2022-08-31 10:56:52'),
+(34, 'ST125265', 'mazka cabdi', '12345', 'student', 'Active', '2022-08-31 13:54:12'),
+(35, 'ST1206', 'Mascuud', '12', 'Admin', 'Active', '2022-08-31 14:38:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marks`
+--
+
+CREATE TABLE `marks` (
+  `marks_id` int(11) NOT NULL,
+  `SubjectID` int(11) NOT NULL,
+  `ResultID` int(11) NOT NULL,
+  `marks` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `marks`
+--
+
+INSERT INTO `marks` (`marks_id`, `SubjectID`, `ResultID`, `marks`) VALUES
+(144, 27, 55, 100),
+(145, 25, 55, 100),
+(146, 26, 55, 50),
+(147, 31, 56, 80),
+(148, 28, 56, 90),
+(149, 29, 56, 100),
+(150, 30, 56, 100),
+(151, 29, 57, 55),
+(152, 30, 57, 44),
+(153, 31, 57, 33),
+(154, 28, 57, 22),
+(155, 27, 58, 0),
+(156, 25, 58, 0),
+(157, 26, 58, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `results`
+--
+
+CREATE TABLE `results` (
+  `result_id` int(11) NOT NULL,
+  `SemesterID` varchar(100) NOT NULL,
+  `Class` varchar(50) NOT NULL,
+  `StudentID` varchar(100) NOT NULL,
+  `Precentage` float(4,2) NOT NULL,
+  `Status` varchar(50) NOT NULL,
+  `Decision` varchar(40) NOT NULL,
+  `Published` varchar(50) NOT NULL,
+  `DateAdded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `results`
+--
+
+INSERT INTO `results` (`result_id`, `SemesterID`, `Class`, `StudentID`, `Precentage`, `Status`, `Decision`, `Published`, `DateAdded`) VALUES
+(55, 'Two', 'CA202', 'ST125265', 83.33, 'B', 'Pass', 'No', '2022-09-02 11:40:22'),
+(56, 'Two', 'CA202', 'STD3524', 92.50, 'A', 'Pass', 'No', '2022-09-02 07:28:47'),
+(58, 'Two', 'CA202', 'ST125265', 0.00, 'Fail', 'Fail', 'Yes', '2022-09-02 11:42:08');
 
 -- --------------------------------------------------------
 
@@ -233,10 +433,9 @@ CREATE TABLE `simester` (
 --
 
 INSERT INTO `simester` (`ID`, `Name`, `date`) VALUES
-('S001', 'ONE', '2022-08-19 14:06:36'),
-('S002', 'TWO', '2022-08-19 14:06:02'),
-('S005', 'FIVE', '2022-08-20 17:07:33'),
-('S0007', 'six', '2022-08-22 08:35:42');
+('a00', 'ONE', '2022-08-31 13:48:26'),
+('Sm09', 'Two', '2022-09-02 07:09:31'),
+('A938', 'Four', '2022-09-03 08:44:17');
 
 -- --------------------------------------------------------
 
@@ -260,8 +459,29 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`RollNumber`, `FullName`, `Gender`, `Mobile`, `Address`, `Class`, `Semester`, `RegisteredDate`) VALUES
+('ST1200', 'Abdul Rahman Haaji', 'Male', 216218, 'Somalia', 'CA209', 'FIVE', '2022-08-21 13:25:58'),
+('ST1202', 'Mohamed', 'Male', 615178163, 'Hodan', 'CA209', 'TWO', '2022-08-23 09:06:25'),
+('ST1203', 'Nasra', 'Female', 61517181, 'yaqshid', 'CA209', 'TWO', '2022-08-23 14:39:37'),
+('ST1204', 'Farah ali', 'Male', 615171890, 'yaqshid', 'CA209', 'TWO', '2022-08-23 14:39:52'),
+('ST1205', 'Mascuud Abdirahman', 'Male', 1727189, 'Hodan', 'CA201', 'FIVE', '2022-08-23 14:43:03'),
+('ST1206', 'Abdullahi Khaliid', 'Male', 1727180, 'Hodan', 'CA201', 'FIVE', '2022-08-23 14:43:19'),
+('ST1207', 'Mohamed Amin', 'Male', 1727186, 'Hodan', 'CA201', 'FIVE', '2022-08-23 14:43:34'),
+('ST1208', 'Sahra ali', 'Female', 912829, 'hodan', 'CA201', 'ONE', '2022-08-24 09:14:08'),
 ('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
-('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51');
+('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
+('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
+('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
+('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
+('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
+('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
+('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
+('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
+('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
+('ST1200', 'Salim', 'Female', 78878, 'Somalia', 'CA209', 'ONE', '2022-08-21 09:06:47'),
+('ST1201', 'Farah', 'Female', 1910220190, 'Somalia', 'CA209', 'TWO', '2022-08-21 09:05:51'),
+('STD2090', 'mascuud abdirahman', 'Male', 617211864, 'banadiri', 'CA202', 'FIVE', '2022-08-31 07:20:40'),
+('ST125265', 'mazka cabdi', 'Male', 61521333, 'banadir', 'CA202', 'ONE', '2022-08-31 13:50:02'),
+('STD3524', 'EngnereCJ', 'Male', 2147483647, 'banadir', 'CA202', 'Two', '2022-09-02 07:27:57');
 
 -- --------------------------------------------------------
 
@@ -280,8 +500,13 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`SubjectID`, `Name`, `Belongs_Semester`) VALUES
-(8, 'SQL SERVER2', 'ONE'),
-(9, 'Mysql', 'FIVE');
+(25, 'php', 'ONE'),
+(26, 'Mysql', 'ONE'),
+(27, 'Database', 'ONE'),
+(28, 'English', 'Two'),
+(29, 'math', 'Two'),
+(30, 'Arabic', 'Two'),
+(31, 'Computer', 'Two');
 
 -- --------------------------------------------------------
 
@@ -303,7 +528,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `Username`, `Password`, `User_Type`, `Status`, `JoinedDate`) VALUES
-('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14');
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US002', 'Nasra', '9090', 'user', 'active', '2022-08-22 16:53:02'),
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US001', 'ENG-CJ', '17829', 'admin', 'active', '2022-08-14 13:43:14'),
+('US003', 'Mascuud', '123', 'admin', 'active', '2022-08-29 05:29:22');
 
 --
 -- Indexes for dumped tables
@@ -314,6 +547,18 @@ INSERT INTO `users` (`ID`, `Username`, `Password`, `User_Type`, `Status`, `Joine
 --
 ALTER TABLE `combanition`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `marks`
+--
+ALTER TABLE `marks`
+  ADD PRIMARY KEY (`marks_id`);
+
+--
+-- Indexes for table `results`
+--
+ALTER TABLE `results`
+  ADD PRIMARY KEY (`result_id`);
 
 --
 -- Indexes for table `subjects`
@@ -329,13 +574,25 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `combanition`
 --
 ALTER TABLE `combanition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `marks`
+--
+ALTER TABLE `marks`
+  MODIFY `marks_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+
+--
+-- AUTO_INCREMENT for table `results`
+--
+ALTER TABLE `results`
+  MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `SubjectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `SubjectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

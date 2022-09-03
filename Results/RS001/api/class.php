@@ -1,6 +1,8 @@
 <?php
 
 require '../config/conn.php';
+session_start();
+
 $action = $_POST['action'];
 // request class
 

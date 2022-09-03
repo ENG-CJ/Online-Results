@@ -8,6 +8,8 @@ $(document).ready(() => {
 $("#semesterName").on("change", FetchSubject)
 $("#className").on("change", fetchStudents)
 $("#saveData").on("click", SaveData)
+
+
 $("#modal").on("click", ()=>{
     $("#exampleModal").modal("show");
 })
@@ -509,8 +511,12 @@ $("#resultsTable tbody").on("click", "i.delete", function () {
 })
 
 
-<<<<<<< HEAD
+
 //? Edit Results  Section Stats Here
+
+
+// update function
+
 // fetching single reult from data base 
 function fetchSingleResult(id){
     let data = {
@@ -525,31 +531,48 @@ function fetchSingleResult(id){
         success : (response)=>{
             //! Modal-ka Halkaan Kuso Bandhig hadduu Kushaqeenayo;
             //! Ama (ViewOnModal()) Function-kaas Ayaa Hoos Ku Diyaarsan Inta Ugu Wac Data-da Ubaas
-            //alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
+            // alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
+            // let { semester_id, FullName, Address } = response.data[0];
+            // UpdateID = RollNumber;
 
-            $("#editModal").modal("show");
+            $("#semesterName").val(response['semester_id']);
+             $("#className").val(response['class_id']);
+             $("#studentNames").val(response['current_student_name']);
+             $("#studentEditModal").modal("show");
+
+
+
+
+
+
+
+
+
    
         },
         error : (response)=>{
             console.log(response);
         }
     })
+
 }
 
-=======
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
 $("#resultsTable tbody").on("click", "i.edit_user", function() {
    
     let resultID = $(this).attr("edit_user_id")
     fetchSingleResult(resultID);
-<<<<<<< HEAD
-    //  alert("hello")
+
+     alert("hello");
     console.log(resultID);
-=======
+
     // alert("hello")
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
+
    
 })
+
+
+
+
 function UpdateResult(id, buttonType) {
 
     if (buttonType == "No") {
@@ -709,11 +732,11 @@ function DisplayChart(actual) {
 }
 
 
-<<<<<<< HEAD
+
 // display data on modal 
 function ViewOnModel(response){
     $("#editResultModal").modal("show");
-=======
+
 //? Edit Results  Section Stats Here
 // fetching single reult from data base 
 function fetchSingleResult(id){
@@ -729,7 +752,8 @@ function fetchSingleResult(id){
         success : (response)=>{
             //! Modal-ka Halkaan Kuso Bandhig hadduu Kushaqeenayo;
             //! Ama (ViewOnModal()) Function-kaas Ayaa Hoos Ku Diyaarsan Inta Ugu Wac Data-da Ubaas
-            alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
+           // alert("This is Not Currently Working..\nThe ID You Want To Update Is "+id+"\nWe Will Stablish This Event, Still Processing...");
+        //    $("#editResultModal").modal("show");
         },
         error : (response)=>{
             console.log(response);
@@ -740,9 +764,8 @@ function fetchSingleResult(id){
 // display data on modal 
 function ViewOnModel(response){
 
->>>>>>> f926d552d38f60c5b6eb02138624ccad384e39d7
 }
-
+}
 
 // count publish result and unpublish
 

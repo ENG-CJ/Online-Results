@@ -6,7 +6,7 @@
 
 
 session_start();
-if(!$_SESSION['username']){
+if($_SESSION['username']=''){
     header("location : ../login/auth-login.php");
     die();
 }

@@ -1,7 +1,7 @@
 <?php
 
 include 'header.php';
-include 'sidebar.php';
+
 ?>
 
 <div class="pcoded-main-container">
@@ -61,50 +61,52 @@ include 'sidebar.php';
       <div class="alert alert-danger d-none" role="alert">
       This is a danger alert—check it out!
       </div>
-          <form action="" method="POST">
+      <form action="" id="resultsForm">
 
-         
+<input type="hidden" id="">
 
-            <div class="form-group mb-2">
-              <label for="">RollNumber</label>
-              <input type="text" class="form-control" id="std_roll">
-            </div>
-            <div class="form-group mb-2">
-              <label for="">FullName</label>
-              <input type="text" class="form-control" id="std_name">
-            </div>
-            
-            <div class="form-group mb-2">
-              <label for="">Gender</label>
-              <input type="text" class="form-control" id="std_gender">
-            </div>
+<div class="form-grouping">
+  <label for="">Select Semester</label>
+  <select class="form-control" name="semesterName" id="semesterName">
 
-            <div class="form-group mb-2">
-              <label for="">Mobile</label>
-              <input type="number" class="form-control" id="std_number">
-            </div>
-            <div class="form-group mb-2">
-              <label for="">Address</label>
-              <input type="text" class="form-control" id="std_address">
-            </div>
-            <div class="form-group mb-2">
-              <label for="">Class</label>
-              <input type="text" class="form-control" id="std_className">
-            </div>
-            <div class="form-group mb-2">
-              <label for="">Semester</label>
-              <input type="text" class="form-control" id="std_semesterName">
-            </div>
 
-           
+  </select>
+</div>
 
-            <div class="form-group mb-2">
-              <!-- user photo based -->
-            </div>
+<div class="form-grouping">
+  <label for="">Select Class</label>
+  <select class="form-control" name="className" id="className">
 
-            
-            <button type="button" class="btn btn-primary" id="saveData">Save</button>
-          </form>
+    <option value="">Select</option>
+  </select>
+</div>
+<div class="form-grouping">
+  <label for="">Select Student</label>
+  <select class="form-control" name="studentNames" id="studentNames">
+
+    <option value="">Select</option>
+  </select>
+  <div class="error-trackerArea">
+
+  </div>
+</div>
+
+
+<div id="subjectsArea">
+
+</div>
+<div class="form-grouping">
+  <!-- <button type="button" id="saveData" class="btn btn-secondary" style="width: 190px;">Save</button> -->
+</div>
+<div class="form-grouping">
+  <input type="hidden" name="action" value="AddResult">
+</div>
+
+
+
+            <button type="button" class="btn btn-primary" id="saveUpdate">Save</button>
+        
+</form>
           </div>
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>

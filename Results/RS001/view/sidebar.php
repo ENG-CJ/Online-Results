@@ -1,9 +1,16 @@
 <?php 
 
-if(!$_SESSION['username']){
-    header("location : ../login/auth-login.php");
-    die();
-}
+session_start();
+
+if($_SESSION['username']=''){
+    header("Location: ../login/auth-login.php");
+ 
+   die();
+  }
+// if(!$_SESSION['username']){
+//     header("location : ../login/auth-login.php");
+//     // die();
+// }
 
 ?>
 <nav class="pcoded-navbar">

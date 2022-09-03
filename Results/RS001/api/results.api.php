@@ -1,6 +1,6 @@
 <?php
 include '../config/conn.php';
-
+session_start();
 $action=$_POST['action'];
 if (isset($action))
 {
@@ -107,6 +107,8 @@ class RequestResult{
 
 
     }
+
+
     public static function AddResult(){
         sleep(3);
        
@@ -286,7 +288,6 @@ class RequestResult{
 
 
     }
-
 
 
 

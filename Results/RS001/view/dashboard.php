@@ -1,7 +1,8 @@
 
 <?php  
 
-require 'header.php'; require 'sidebar.php' ;
+require 'header.php';
+
 ?>
 
 <div class="pcoded-main-container">
@@ -225,7 +226,7 @@ require 'header.php'; require 'sidebar.php' ;
                                                </form>
                                             </div>
                                             <div class="col-md-12 col-xl-4">
-                                               <button type="button" id="load" class="btn btn-secondary mt-4">Load</button>
+                                               <button type="submit" id="load" class="btn btn-secondary mt-4">Load</button>
                                             </div>
                                             <div class="col-md-12 col-xl-12">
                                             <div id="drawChart"></div>
