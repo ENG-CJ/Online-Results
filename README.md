@@ -40,7 +40,12 @@ By Using This Steps<br>
 And That's It.  Locate The FILE In The Downloads Folder 
 
 # Main Features
--------------
+1. <kbd>Users</kbd>
+2. <kbd>Students</kbd>
+3. <kbd>Subjects</kbd>
+4. <kbd>Semesters</kbd>
+5. <kbd>Classes</kbd>
+6. <kbd>results</kbd>
 # Live Demo
 [View Preview](https://myjustresults.000webhostapp.com/)
 
