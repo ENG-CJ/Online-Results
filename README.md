@@ -46,6 +46,11 @@ And That's It.  Locate The FILE In The Downloads Folder
 4. <kbd>Semesters</kbd>
 5. <kbd>Classes</kbd>
 6. <kbd>results</kbd>
+
+# Portal Users
+1. Master User (admin)
+2. Nornmal User ( Portal User)
+3. Students 
 # Live Demo
 [View Preview](https://myjustresults.000webhostapp.com/)
 
